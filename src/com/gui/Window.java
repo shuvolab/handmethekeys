@@ -10,10 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import com.database.Connection;
 import com.engine.mediator.Mediator;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class Window extends JFrame {
 
@@ -22,7 +25,7 @@ public class Window extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtLabel;
+	private JTextField txtLogin;
 	private JTextField txtPassword;
 
 	/**
@@ -57,29 +60,39 @@ public class Window extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(47, 97, 61, 16);
+		lblLogin.setBounds(47, 53, 61, 16);
 		panel.add(lblLogin);
 		
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(47, 136, 75, 16);
+		lblPassword.setBounds(28, 93, 75, 16);
 		panel.add(lblPassword);
 		
-		txtLabel = new JTextField();
-		txtLabel.setBounds(135, 91, 215, 28);
-		panel.add(txtLabel);
-		txtLabel.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBounds(113, 47, 242, 28);
+		panel.add(txtLogin);
+		txtLogin.setColumns(10);
 		
 		txtPassword = new JTextField();
-		txtPassword.setBounds(134, 130, 216, 28);
+		txtPassword.setBounds(113, 87, 242, 28);
 		panel.add(txtPassword);
 		txtPassword.setColumns(10);
+		
+		JLabel lbl_test_confirmation = new JLabel("");
+		lbl_test_confirmation.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lbl_test_confirmation.setForeground(Color.RED);
+		lbl_test_confirmation.setBounds(28, 192, 137, 28);
+		panel.add(lbl_test_confirmation);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				lbl_test_confirmation.setText(
+						new Connection().getUserId(txtLogin.getText(), txtPassword.getText())!=-1 ?
+								"Login Successfull" : "Login Failed"
+									);
 			}
 		});
-		btnSubmit.setBounds(233, 180, 117, 29);
+		btnSubmit.setBounds(238, 140, 117, 29);
 		panel.add(btnSubmit);
 	}
 }
