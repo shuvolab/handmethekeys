@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import com.database.Connection;
 import com.engine.mediator.Mediator;
+import com.engine.mediator.data.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -47,7 +48,7 @@ public class Window extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Window(Mediator mediator) {
+	public Window(final Mediator mediator) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -77,7 +78,7 @@ public class Window extends JFrame {
 		panel.add(txtPassword);
 		txtPassword.setColumns(10);
 		
-		JLabel lbl_test_confirmation = new JLabel("");
+		final JLabel lbl_test_confirmation = new JLabel("");
 		lbl_test_confirmation.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lbl_test_confirmation.setForeground(Color.RED);
 		lbl_test_confirmation.setBounds(28, 192, 137, 28);
@@ -86,10 +87,27 @@ public class Window extends JFrame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lbl_test_confirmation.setText(
-						new Connection().getUserId(txtLogin.getText(), txtPassword.getText())!=-1 ?
-								"Login Successfull" : "Login Failed"
-									);
+				//get userId from the database
+				int userId = new Connection().
+						getUserId(
+								txtLogin.getText(), txtPassword.getText()
+								);
+				if(userId==-1) 
+				{
+					lbl_test_confirmation.setText("Login Failed");
+				}
+				else
+				{
+					lbl_test_confirmation.setText("Login Successful");
+					//every object retrieved from the database
+					//should be passed to the mediator 
+					//which represents a web session
+					//that will be passed across windows
+					mediator.setUser(
+							new User(
+							userId, txtLogin.getText(), txtPassword.getText()));
+				}
+				
 			}
 		});
 		btnSubmit.setBounds(238, 140, 117, 29);

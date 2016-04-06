@@ -30,8 +30,16 @@ import com.mysql.jdbc.Statement;
 public class Connection 
 {
 
-	private String JDBC_CONNECTION_URI = "jdbc:mysql://localhost:3306/db_handmethekeys";
+	private String JDBC_CONNECTION_URI = "jdbc:mysql://127.0.0.1:3306/db_handmethekeys";
+	private String db_username = "root";
+	private String db_password = "";
 	
+	/**
+	 * Get the user id based on the 
+	 * @param username
+	 * @param password
+	 * @return user id if pair exists or -1 if it does not
+	 */
 	public int getUserId(String username, String password){
 		
 		String q_SELECT_USERID = "SELECT ID FROM tbl_user WHERE username = '" + username + "' AND password = '" + password + "'";
@@ -40,7 +48,7 @@ public class Connection
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(JDBC_CONNECTION_URI, "root", "");
+			con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
 			java.sql.Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(q_SELECT_USERID);
 			rs.next();
