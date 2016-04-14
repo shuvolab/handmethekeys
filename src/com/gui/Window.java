@@ -106,6 +106,7 @@ public class Window extends JFrame {
 					mediator.setUser(
 							new User(
 							userId, txtLogin.getText(), txtPassword.getText()));
+					//this is where we would launch the next window?
 				}
 				
 			}

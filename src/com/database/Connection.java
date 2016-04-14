@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.Statement;
+import com.engine.mediator.data.*;
 
 /**
  * 
@@ -66,6 +67,17 @@ public class Connection
 			e.printStackTrace();
 		}
 		return user_id;
+	}
+	
+	/**
+	 * Get a Car's info from the database by the id
+	 * @param id
+	 * @return car object constructed from the database if id match or a null object if it does not
+	 */
+	public Car getCar(int id){
+		Car car;
+		//database stuff
+		return car;
 	}
 	
 }
