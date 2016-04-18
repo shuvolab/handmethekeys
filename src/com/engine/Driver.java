@@ -1,13 +1,13 @@
 package com.engine;
 
 import com.engine.mediator.Mediator;
-import com.gui.Window;
+import com.gui.SIGNIN;
 
 public class Driver {
 	
 	public Driver(){
 		Mediator mediator = new Mediator();
-		new Window(mediator).start(mediator);
+		new SIGNIN(mediator).start(mediator);
 	}
 	
 }

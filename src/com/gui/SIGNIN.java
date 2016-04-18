@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 
-public class Window extends JFrame {
+public class SIGNIN extends JFrame {
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class Window extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Window frame = new Window(mediator);
+					SIGNIN frame = new SIGNIN(mediator);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class Window extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Window(final Mediator mediator) {
+	public SIGNIN(final Mediator mediator) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
