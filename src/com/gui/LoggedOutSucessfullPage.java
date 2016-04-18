@@ -1,7 +1,7 @@
 package com.gui;
+
 /**
- * 
- * This class creates the JFrame window for the Sign Up page of Hand Me the Keys
+ * This class creates the JFrame window for the Logged out page of Hand Me the Keys
  */
 import java.awt.EventQueue;
 
@@ -24,12 +24,9 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class SignUpPage {
+public class LoggedOutSucessfullPage {
 
-	JFrame frame;
-	private JTextField UsernameTextField;
-	private JTextField PasswordTextField;
-	private JTextField ConfirmPasswordTextField;
+	private JFrame frame;
 	private JLabel ConfPassErrorMessage;
 
 	/**
@@ -39,7 +36,7 @@ public class SignUpPage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignUpPage window = new SignUpPage();
+					LoggedOutSucessfullPage window = new LoggedOutSucessfullPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,8 +47,9 @@ public class SignUpPage {
 
 	/**
 	 * Create the SignUpPage frame.
+	 * @wbp.parser.entryPoint
 	 */
-	public SignUpPage() {
+	public LoggedOutSucessfullPage() {
 		initializeFrame();
 	}
 
@@ -73,9 +71,6 @@ public class SignUpPage {
 		JPanel PleaseSignUpPanel = new JPanel();
 		CompleteSignUpPanel.add(PleaseSignUpPanel, BorderLayout.NORTH);
 		CompleteSignUpPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JLabel lblPleaseSignUp = new JLabel("PLEASE SIGN UP");
-		PleaseSignUpPanel.add(lblPleaseSignUp);
 		PleaseSignUpPanel.setBorder(BorderFactory.createEmptyBorder());
 		
 		JPanel userPassConfPanel = new JPanel();
@@ -88,62 +83,13 @@ public class SignUpPage {
 		UsernamePanel.setLayout(new BorderLayout(0, 0));
 		UsernamePanel.setBorder(BorderFactory.createEmptyBorder());
 		
-		JLabel lblUsername = new JLabel("Username");
-		UsernamePanel.add(lblUsername, BorderLayout.NORTH);
-		
-		UsernameTextField = new JTextField();
-		UsernameTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		    });
-		UsernamePanel.add(UsernameTextField, BorderLayout.CENTER);
-		UsernameTextField.setColumns(10);
-		
-		JPanel PasswordPanel = new JPanel();
-		userPassConfPanel.add(PasswordPanel);
-		PasswordPanel.setLayout(new BorderLayout(0, 0));
-		PasswordPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JLabel lblPassword = new JLabel("Password");
-		PasswordPanel.add(lblPassword, BorderLayout.NORTH);
-		
-		PasswordTextField = new JTextField();
-		PasswordTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		    });
-		PasswordPanel.add(PasswordTextField, BorderLayout.CENTER);
-		PasswordTextField.setColumns(10);
+		JLabel lblPleaseSignUp = new JLabel("YOU ARE SUCCESFULLY LOGGED OUT!!");
+		UsernamePanel.add(lblPleaseSignUp, BorderLayout.CENTER);
 		
 		
-		JPanel ConfirmPassPanel = new JPanel();
-		userPassConfPanel.add(ConfirmPassPanel);
-		ConfirmPassPanel.setLayout(new BorderLayout(0, 0));
-		ConfirmPassPanel.setBorder(BorderFactory.createEmptyBorder());
 		
-		JLabel lblConfirmPassword = new JLabel("Confirm Password");
-		ConfirmPassPanel.add(lblConfirmPassword, BorderLayout.NORTH);
 		
-		ConfirmPasswordTextField = new JTextField("");
-		ConfirmPasswordTextField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(ConfirmPasswordTextField.getText().equals(PasswordTextField.getText()))
-				{
-					JOptionPane.showMessageDialog(null, "Please make sure the two passwords match!");
-				}
-				
-			}
-		    });
-		ConfirmPassPanel.add(ConfirmPasswordTextField, BorderLayout.CENTER);
-		ConfirmPasswordTextField.setColumns(10);
+		
 		
 		JPanel HMTKLoginPanel = new JPanel();
 		HMTKLoginPanel.setBounds(6, 6, 986, 24);
@@ -166,30 +112,13 @@ public class SignUpPage {
 		JLabel textPaneLogin = new JLabel();
 		textPaneLogin.addMouseListener(new MouseAdapter() {
 
-	        public void mouseClicked(MouseEvent e) 
-	        {
-	            System.out.print("You Successfully Logged Out");
-	        }
+	     
 
 	    });
 		LoginPanel.add(textPaneLogin);
 		textPaneLogin.setText("LOG IN");
 		textPaneLogin.setBackground(SystemColor.window);
-		
-		JButton SignUpButton = new JButton("Sign Up");
-		SignUpButton.setBounds(414, 413, 117, 29);
-		frame.getContentPane().add(SignUpButton);
-		SignUpButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(ConfirmPasswordTextField.getText().equals("") || PasswordTextField.getText().equals("") || UsernameTextField.getText().equals(""))
-				{
-					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
-				}
-				
-			}
-		    });
 	
 	}
 }
+
