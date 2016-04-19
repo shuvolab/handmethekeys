@@ -1,7 +1,8 @@
 package com.gui;
 /**
  * 
- * This class creates the JFrame window for the Sign Up page of Hand Me the Keys
+ * This class creates the JFrame window for the Sign Up page of Hand Me the Keys and this is also our home page 
+ * for our application.
  */
 import java.awt.EventQueue;
 

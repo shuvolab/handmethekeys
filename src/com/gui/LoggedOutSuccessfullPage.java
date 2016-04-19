@@ -24,7 +24,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class LoggedOutSucessfullPage {
+public class LoggedOutSuccessfullPage {
 
 	private JFrame frame;
 	private JLabel ConfPassErrorMessage;
@@ -36,7 +36,7 @@ public class LoggedOutSucessfullPage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoggedOutSucessfullPage window = new LoggedOutSucessfullPage();
+					LoggedOutSuccessfullPage window = new LoggedOutSuccessfullPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class LoggedOutSucessfullPage {
 	 * Create the SignUpPage frame.
 	 * @wbp.parser.entryPoint
 	 */
-	public LoggedOutSucessfullPage() {
+	public LoggedOutSuccessfullPage() {
 		initializeFrame();
 	}
 
