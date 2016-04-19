@@ -1,6 +1,9 @@
 package com.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
@@ -8,46 +11,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-
-public class CarResultsPage {
+public class CarRecommendationResultsPage {
 
 	private JFrame frame;
-	private ArrayList<String> CarObjects=new ArrayList<String>(); //will hold matching car objects results. Change Wrapper Class to cars later
-	private JPanel CarObjectResultsPanel;
-	
+	private ArrayList<String> RecommendationObjects=new ArrayList<String>(); //will hold matching car objects results. Change Wrapper Class to Cars/Recommendations? later
+	private JPanel RecommendationObjectResultsPanel;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				try 
-				{
-					CarResultsPage window = new CarResultsPage();
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CarRecommendationResultsPage window = new CarRecommendationResultsPage();
 					window.frame.setVisible(true);
-				} 
-				catch (Exception e) 
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -55,10 +42,9 @@ public class CarResultsPage {
 	}
 
 	/**
-	 * Create the Car Results Page.
+	 * Create the Car Recommendations Page.
 	 */
-	public CarResultsPage()
-	{
+	public CarRecommendationResultsPage() {
 		initialize();
 	}
 
@@ -116,7 +102,7 @@ public class CarResultsPage {
 	        public void mouseClicked(MouseEvent e) 
 	        {
 	        	frame.dispose();
-	            //opens login page
+	           //opens logoutpage
 	        }
 
 	    });
@@ -129,23 +115,24 @@ public class CarResultsPage {
 		UserLogoutLabel.setText("LOG OUT");
 		UserLogoutLabel.setBackground(SystemColor.window);
 		LogoutTextPanel.add(UserLogoutLabel);
+		 
 		
 		JPanel ResultsConfirmationTextPanel = new JPanel();
 		ResultsConfirmationTextPanel.setBorder(BorderFactory.createEmptyBorder());
-		ResultsConfirmationTextPanel.setBounds(31, 110, 303, 30);
+		ResultsConfirmationTextPanel.setBounds(6, 107, 704, 24);
 		frame.getContentPane().add(ResultsConfirmationTextPanel);
 		
-		JLabel FoundCarsLabel = new JLabel("Found " + /*count car objects CarObjects.size() +*/ " car(s) that meet(s) your specification!");
-		ResultsConfirmationTextPanel.add(FoundCarsLabel);
+		JLabel FoundRecommendationsLabel = new JLabel("Sorry, we don't have any car that meets your specification. But we have some suggestions you would like.");
+		ResultsConfirmationTextPanel.add(FoundRecommendationsLabel);
 		
-		CarObjectResultsPanel = new JPanel();
-		CarObjectResultsPanel.setForeground(Color.BLACK);
-		CarObjectResultsPanel.setBorder(BorderFactory.createEmptyBorder());
-		CarObjectResultsPanel.setBounds(6, 152, 386, 367);
-		frame.getContentPane().add(CarObjectResultsPanel);
-		CarObjectResultsPanel.setLayout(new GridLayout(5, 1, 0, 0));
+		RecommendationObjectResultsPanel = new JPanel();
+		RecommendationObjectResultsPanel.setForeground(Color.BLACK);
+		RecommendationObjectResultsPanel.setBorder(BorderFactory.createEmptyBorder());
+		RecommendationObjectResultsPanel.setBounds(6, 152, 386, 367);
+		frame.getContentPane().add(RecommendationObjectResultsPanel);
+		RecommendationObjectResultsPanel.setLayout(new GridLayout(5, 1, 0, 0));
 	}
-	//code of what a panel for each car would look like
+		//code of what a panel for each car would look like
 		/*JPanel CarObjectPanel = new JPanel();
 		CarObjectResultsPanel.add(CarObjectPanel);
 		CarObjectPanel.setLayout(new BorderLayout(0, 10));
@@ -209,29 +196,29 @@ public class CarResultsPage {
 	}*/
 	
 	/**
-	 * Populate the ArrayList with Car objects from the database
+	 * Populate the ArrayList with Car Recommendation objects from the database
 	 */
-	 public void populateCarObjectArrayList()
+	 public void populateRecommendationObjectArrayList()
 	 {
-		CarObjects.add(null); //from database, change null later on
+		RecommendationObjects.add(null); //from database, change null later on
 	 }
 	 
 	 /**
-	 * Populate the CarObjectResultsPanel with createCarObjectPanel() JPanels constructed from each Car object from the ArrayList
-	 */
-	 public void populateCarObjectResultList() //5 objects displayed max
+	* Populate the CarObjectResultsPanel with createCarRecommendationPanel() JPanels constructed from each Car/Recommendation? object from the ArrayList
+	*/
+	 public void populateRecommendationObjectResultList() //5 recommendation objects max
 	 {
-	 	while(!CarObjects.isEmpty() || CarObjects.size()<5)
+	 	while(!RecommendationObjects.isEmpty() || RecommendationObjects.size()<5)
 	 	{
-	 		CarObjectResultsPanel.add(createCarObjectPanel());
+	 		RecommendationObjectResultsPanel.add(createCarRecommendationPanel());
 	 	}
 	 }
 	 
 	 /**
-	 * Create a Car Object Panel with with Car objects from the ArrayList
-	 * @return JPanel Car Object
-	 */
-	 public JPanel createCarObjectPanel()
+	* Create a Car Recommendation Panel with with Car objects from the ArrayList
+	* @return JPanel Car Recommendation Object
+	*/
+	 public JPanel createCarRecommendationPanel()
 	 {//will create a JPanel for each car object from the query
 		JPanel CarObjectPanel = new JPanel();
 		CarObjectPanel.setBounds(84, 249, 260, 62);
@@ -251,7 +238,6 @@ public class CarResultsPage {
 			public void actionPerformed(ActionEvent e) 
 			{
 				// Rent Car object
-				//database side
 				
 			}
 			
@@ -296,4 +282,5 @@ public class CarResultsPage {
 		return CarObjectPanel;
 		
 	}
+
 }
