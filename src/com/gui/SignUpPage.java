@@ -193,4 +193,12 @@ public class SignUpPage {
 		    });
 	
 	}
+	/**
+	 * sets the frame visible for the class
+	 */
+	
+	public void setvisible(){
+		
+		frame.setVisible(true);
+	}
 }

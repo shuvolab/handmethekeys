@@ -56,7 +56,7 @@ private void initialize()
 {
 frame = new JFrame();
 frame.setBounds(100, 100, 998, 594);
-frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 frame.getContentPane().setLayout(null);
 JPanel HMTKLoginPanel = new JPanel();
 HMTKLoginPanel.setBounds(6, 6, 986, 24);
@@ -74,25 +74,32 @@ HMTKLoginPanel.add(UserAndLogOutPanel, BorderLayout.EAST);
 UserAndLogOutPanel.setLayout(new GridLayout(1, 2, 0, 0));
 UserAndLogOutPanel.setBorder(BorderFactory.createEmptyBorder());
 JPanel UserAccountTextPanel = new JPanel();
+UserAccountTextPanel.addMouseListener(new MouseAdapter() {
+
+    public void mouseClicked(MouseEvent e) 
+    {
+      
+    }
+
+});
 FlowLayout fl_UserAccountTextPanel = (FlowLayout) UserAccountTextPanel.getLayout();
 fl_UserAccountTextPanel.setVgap(10);
 UserAndLogOutPanel.add(UserAccountTextPanel);
 UserAccountTextPanel.setBorder(BorderFactory.createEmptyBorder());
 JLabel UserTextLabel = new JLabel();
 
-
-UserTextLabel.addMouseListener(new MouseAdapter() {
-
-        public void mouseClicked(MouseEvent e) 
-        {
-          
-        }
-
-    });
 UserAccountTextPanel.add(UserTextLabel);
 UserTextLabel.setText("USER");
 UserTextLabel.setBackground(SystemColor.window);
 JPanel LogoutTextPanel = new JPanel();
+LogoutTextPanel.addMouseListener(new MouseAdapter() {
+
+    public void mouseClicked(MouseEvent e) 
+    {
+      frame.dispose();
+    }
+
+});
 FlowLayout fl_LogoutTextPanel = (FlowLayout) LogoutTextPanel.getLayout();
 fl_LogoutTextPanel.setVgap(10);
 UserAndLogOutPanel.add(LogoutTextPanel);
@@ -118,5 +125,14 @@ panel.add(lblSdsdsadsad);
 public void actionPerformed(ActionEvent e) 
 {
 // Action performed
+}
+
+/**
+ * sets the frame visible for the class
+ */
+
+public void setvisible(){
+	
+	frame.setVisible(true);
 }
 }

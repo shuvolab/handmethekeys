@@ -59,7 +59,7 @@ public class LoggedOutSuccessfullPage {
 	private void initializeFrame() { 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel CompleteSignUpPanel = new JPanel();
@@ -120,5 +120,16 @@ public class LoggedOutSuccessfullPage {
 		textPaneLogin.setBackground(SystemColor.window);
 	
 	}
+	
+	/**
+	 * sets the frame visible for the class
+	 */
+	
+	public void setvisible(){
+		
+		frame.setVisible(true);
+	}
+	
+	
 }
 
