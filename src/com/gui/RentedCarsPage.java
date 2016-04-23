@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 
+import com.engine.mediator.Mediator;
+
 public class RentedCarsPage {
 
 	private JFrame frame;
@@ -31,11 +33,11 @@ public class RentedCarsPage {
 	/**
 	 * This is the successful frame for added car into our Database.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RentedCarsPage window = new RentedCarsPage();
+					RentedCarsPage window = new RentedCarsPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,14 +49,14 @@ public class RentedCarsPage {
 	/**
 	 * Create the Rented Cars Page.
 	 */
-	public RentedCarsPage() {
-		initialize();
+	public RentedCarsPage(final Mediator mediator) {
+		initialize(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(final Mediator mediator) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

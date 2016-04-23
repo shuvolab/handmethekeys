@@ -3,6 +3,8 @@ package com.engine.mediator.data;
 public class Car {
 	private int ID, zip;
 	private String make;
+	private int ID;
+	private String brand;
 	private String model;
 	private String year;
 	private User owner;
@@ -10,15 +12,16 @@ public class Car {
 	
 	public Car() {
 		setID(-1);
-		setMake("");
+		setBrand("");
 		setModel("");
 		setYear("");
 		setOwner(new User());
 	}
 	
+
 	public Car(int id, String mk, String md, String yr, int zip, User user) {
 		setID(id);
-		setMake(mk);
+		setBrand(br);
 		setModel(md);
 		setYear(yr);
 		setZip(zip);
@@ -34,11 +37,11 @@ public class Car {
 	}
 	
 	public String getMake(){
-		return make;
+		return brand;
 	}
 	
-	public void setMake(String mk){
-		make=mk;
+	public void setBrand(String br){
+		brand=br;
 	}
 	
 	public String getModel(){
@@ -66,7 +69,7 @@ public class Car {
 	}
 	
 	public String toString(){
-		String car = "Make: "+make+" Model: "+model+" Year: "+year;
+		String car = "Make: "+brand+" Model: "+model+" Year: "+year;
 		return car;
 	}
 

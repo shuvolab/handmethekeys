@@ -71,7 +71,6 @@ public class Connection
 	 */
 	public Car getCar(int id){
 		Car car = new Car();
-<<<<<<< Updated upstream
 		//database stuff
 		return car;
 	}
@@ -90,9 +89,7 @@ public class Connection
 		  } catch (SQLException e) {
 			  // TODO Auto-generated catch block
 			  e.printStackTrace();
-=======
-		
-		
+		  }
 		return car;
 	}
 	
@@ -235,13 +232,10 @@ public class Connection
 		  } catch (SQLException e) {
 		   // TODO Auto-generated catch block
 		   e.printStackTrace();
->>>>>>> Stashed changes
 		  }
 		  return null;
 	}
-	
-<<<<<<< Updated upstream
-=======
+
 	public void addUser(String username, String password)
 	{
 		String INSERT = "INSERT INTO tbl_user VALUES('" + username + "','" + password + "'";
@@ -259,6 +253,5 @@ public class Connection
 			e.printStackTrace();
 		}
 	}
-	
->>>>>>> Stashed changes
+
 }

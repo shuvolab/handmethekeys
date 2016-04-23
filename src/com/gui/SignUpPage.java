@@ -200,6 +200,9 @@ public class SignUpPage {
 					if(userId==-1) 
 					{
 						//addUser, get UserId, set mediator user, start UserViewPage sending new mediator
+						Connection connection = new Connection();
+						connection.addUser(UsernameTextField.getText(),PasswordTextField.getText());
+						mediator.setUser(connection.getUser(UsernameTextField.getText(),PasswordTextField.getText());
 						UserViewPage.start(mediator);
 					}
 					else
