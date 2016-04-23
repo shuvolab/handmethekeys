@@ -143,7 +143,7 @@ public class CarResultsPage {
 		CarObjectResultsPanel.setLayout(new GridLayout(5, 1, 0, 0));
 	
 	//code of what a panel for each car would look like
-		/*JPanel CarObjectPanel = new JPanel();
+		JPanel CarObjectPanel = new JPanel();
 		CarObjectResultsPanel.add(CarObjectPanel);
 		CarObjectPanel.setLayout(new BorderLayout(0, 10));
 		CarObjectPanel.setBorder(BorderFactory.createEmptyBorder());
@@ -217,7 +217,12 @@ public class CarResultsPage {
 		Zippanel.add(lblZipCode);
 		*/
 	
+<<<<<<< Updated upstream
 	}
+=======
+	
+}
+>>>>>>> Stashed changes
 	
 	/**
 	 * Populate the ArrayList with Car objects from the database

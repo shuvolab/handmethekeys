@@ -1,11 +1,12 @@
 package com.engine.mediator.data;
 
 public class Car {
-	private int ID;
+	private int ID, zip;
 	private String make;
 	private String model;
 	private String year;
 	private User owner;
+	
 	
 	public Car() {
 		setID(-1);
@@ -15,11 +16,13 @@ public class Car {
 		setOwner(new User());
 	}
 	
-	public Car(int id, String mk, String md, String yr) {
+	public Car(int id, String mk, String md, String yr, int zip, User user) {
 		setID(id);
 		setMake(mk);
 		setModel(md);
 		setYear(yr);
+		setZip(zip);
+		setOwner(user);
 	}
 	
 	public int getID(){
@@ -65,5 +68,13 @@ public class Car {
 	public String toString(){
 		String car = "Make: "+make+" Model: "+model+" Year: "+year;
 		return car;
+	}
+
+	public int getZip() {
+		return zip;
+	}
+
+	public void setZip(int zip) {
+		this.zip = zip;
 	}
 }
