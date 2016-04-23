@@ -8,21 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import javax.swing.BorderFactory;
 import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 public class CarResultsPage {
@@ -115,6 +109,9 @@ public class CarResultsPage {
 
 	        public void mouseClicked(MouseEvent e) 
 	        {
+	        	
+	        	//CarRecommendationResultsPage page= new CarRecommendationResultsPage();
+	        	//page.setvisible();
 	        	frame.dispose();
 	            //opens login page
 	        }
@@ -144,7 +141,7 @@ public class CarResultsPage {
 		CarObjectResultsPanel.setBounds(6, 152, 386, 367);
 		frame.getContentPane().add(CarObjectResultsPanel);
 		CarObjectResultsPanel.setLayout(new GridLayout(5, 1, 0, 0));
-	}
+	
 	//code of what a panel for each car would look like
 		/*JPanel CarObjectPanel = new JPanel();
 		CarObjectResultsPanel.add(CarObjectPanel);
@@ -198,15 +195,29 @@ public class CarResultsPage {
 		JLabel CarYearLabel = new JLabel("CAR YEAR");
 		CarYearPanel.add(CarYearLabel);
 		
+		JPanel BrandZipPanel = new JPanel();
+		ModelYearBrandPanel.add(BrandZipPanel);
+		BrandZipPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		BrandZipPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JPanel BrandPanel = new JPanel();
-		ModelYearBrandPanel.add(BrandPanel);
+		FlowLayout flowLayout_2 = (FlowLayout) BrandPanel.getLayout();
+		flowLayout_2.setHgap(50);
+		BrandZipPanel.add(BrandPanel);
 		BrandPanel.setBorder(BorderFactory.createEmptyBorder());
 		
 		JLabel lblBrand = new JLabel("BRAND");
 		BrandPanel.add(lblBrand);
+		
+		JPanel Zippanel = new JPanel();
+		BrandZipPanel.add(Zippanel);
+		Zippanel.setBorder(BorderFactory.createEmptyBorder());
+		
+		JLabel lblZipCode = new JLabel("ZIP CODE");
+		Zippanel.add(lblZipCode);
+		*/
 	
-	
-	}*/
+	}
 	
 	/**
 	 * Populate the ArrayList with Car objects from the database
@@ -233,67 +244,87 @@ public class CarResultsPage {
 	 */
 	 public JPanel createCarObjectPanel()
 	 {//will create a JPanel for each car object from the query
-		JPanel CarObjectPanel = new JPanel();
-		CarObjectPanel.setBounds(84, 249, 260, 62);
-		frame.getContentPane().add(CarObjectPanel);
-		CarObjectPanel.setLayout(new BorderLayout(0, 10));
-		CarObjectPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JPanel RentMePanel = new JPanel();
-		CarObjectPanel.add(RentMePanel, BorderLayout.EAST);
-		RentMePanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JButton RentMeButton = new JButton("RENT ME");
-		RentMePanel.add(RentMeButton);
-		RentMeButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				// Rent Car object
-				//database side
-				
-			}
+		 JPanel CarObjectPanel = new JPanel();
+			CarObjectResultsPanel.add(CarObjectPanel);
+			CarObjectPanel.setLayout(new BorderLayout(0, 10));
+			CarObjectPanel.setBorder(BorderFactory.createEmptyBorder());
 			
-		});
-		
-		JPanel ModelYearBrandPanel = new JPanel();
-		CarObjectPanel.add(ModelYearBrandPanel, BorderLayout.CENTER);
-		ModelYearBrandPanel.setLayout(new GridLayout(2, 1, 0, 0));
-		ModelYearBrandPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JPanel ModelYearPanel = new JPanel();
-		ModelYearBrandPanel.add(ModelYearPanel);
-		ModelYearPanel.setLayout(new GridLayout(1, 2, 0, 0));
-		ModelYearPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JPanel ModelPanel = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) ModelPanel.getLayout();
-		flowLayout.setVgap(0);
-		flowLayout.setHgap(0);
-		ModelYearPanel.add(ModelPanel);
-		ModelPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JLabel ModelLabel = new JLabel("MODEL");
-		ModelPanel.add(ModelLabel);
-		
-		JPanel CarYearPanel = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) CarYearPanel.getLayout();
-		flowLayout_1.setVgap(0);
-		flowLayout_1.setHgap(0);
-		ModelYearPanel.add(CarYearPanel);
-		CarYearPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JLabel CarYearLabel = new JLabel("CAR YEAR");
-		CarYearPanel.add(CarYearLabel);
-		
-		JPanel BrandPanel = new JPanel();
-		ModelYearBrandPanel.add(BrandPanel);
-		BrandPanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JLabel lblBrand = new JLabel("BRAND");
-		BrandPanel.add(lblBrand);
-		return CarObjectPanel;
+			JPanel RentMePanel = new JPanel();
+			CarObjectPanel.add(RentMePanel, BorderLayout.EAST);
+			RentMePanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JButton RentMeButton = new JButton("RENT ME");
+			RentMePanel.add(RentMeButton);
+			RentMeButton.addActionListener(new ActionListener()
+			{
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// Rent Car object
+					
+				}
+				
+			});
+			
+			JPanel ModelYearBrandPanel = new JPanel();
+			CarObjectPanel.add(ModelYearBrandPanel, BorderLayout.CENTER);
+			ModelYearBrandPanel.setLayout(new GridLayout(2, 1, 0, 0));
+			ModelYearBrandPanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JPanel ModelYearPanel = new JPanel();
+			ModelYearBrandPanel.add(ModelYearPanel);
+			ModelYearPanel.setLayout(new GridLayout(1, 2, 0, 0));
+			ModelYearPanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JPanel ModelPanel = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) ModelPanel.getLayout();
+			flowLayout.setVgap(0);
+			flowLayout.setHgap(0);
+			ModelYearPanel.add(ModelPanel);
+			ModelPanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JLabel ModelLabel = new JLabel("MODEL");
+			ModelPanel.add(ModelLabel);
+			
+			JPanel CarYearPanel = new JPanel();
+			FlowLayout flowLayout_1 = (FlowLayout) CarYearPanel.getLayout();
+			flowLayout_1.setVgap(0);
+			flowLayout_1.setHgap(0);
+			ModelYearPanel.add(CarYearPanel);
+			CarYearPanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JLabel CarYearLabel = new JLabel("CAR YEAR");
+			CarYearPanel.add(CarYearLabel);
+			
+			JPanel BrandZipPanel = new JPanel();
+			ModelYearBrandPanel.add(BrandZipPanel);
+			BrandZipPanel.setLayout(new GridLayout(0, 2, 0, 0));
+			BrandZipPanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JPanel BrandPanel = new JPanel();
+			FlowLayout flowLayout_2 = (FlowLayout) BrandPanel.getLayout();
+			flowLayout_2.setHgap(50);
+			BrandZipPanel.add(BrandPanel);
+			BrandPanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JLabel lblBrand = new JLabel("BRAND");
+			BrandPanel.add(lblBrand);
+			
+			JPanel Zippanel = new JPanel();
+			BrandZipPanel.add(Zippanel);
+			Zippanel.setBorder(BorderFactory.createEmptyBorder());
+			
+			JLabel lblZipCode = new JLabel("ZIP CODE");
+			Zippanel.add(lblZipCode);
+			return CarObjectPanel;
 		
 	}
+	 
+	 /**
+	 * sets the frame visible for the class
+	 */
+	 public void setvisible()
+	 {
+		 frame.setVisible(true);
+	 }
 }
