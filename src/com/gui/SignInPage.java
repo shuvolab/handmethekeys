@@ -1,8 +1,12 @@
 package com.gui;
+import com.database.Connection;
 /**
  * @author Aidan Battad
  * This class creates the JFrame window for the Sign IN page of Hand Me the Keys
  */
+import com.engine.mediator.*;
+import com.engine.mediator.data.User;
+
 import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
@@ -29,17 +33,17 @@ public class SignInPage {
 	private JFrame frame;
 	private JTextField UsernameTextField;
 	private JTextField PasswordTextField;
-	private JTextField ConfirmPasswordTextField;
+	//private JTextField ConfirmPasswordTextField;
 
 
 	/**
 	 * Launch the builder application.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignInPage window = new SignInPage();
+					SignInPage window = new SignInPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,35 +55,35 @@ public class SignInPage {
 	/**
 	 * Create the SignUpPage frame.
 	 */
-	public SignInPage() {
-		initializeFrame();
+	public SignInPage(final Mediator mediator) {
+		initializeFrame(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initializeFrame() { 
+	private void initializeFrame(final Mediator mediator) { 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel CompleteSignUpPanel = new JPanel();
-		CompleteSignUpPanel.setForeground(Color.BLACK);
-		CompleteSignUpPanel.setBounds(313, 154, 331, 247);
-		frame.getContentPane().add(CompleteSignUpPanel);
-		CompleteSignUpPanel.setLayout(new BorderLayout(10, 25));
+		JPanel CompleteSignInPanel = new JPanel();
+		CompleteSignInPanel.setForeground(Color.BLACK);
+		CompleteSignInPanel.setBounds(313, 154, 331, 247);
+		frame.getContentPane().add(CompleteSignInPanel);
+		CompleteSignInPanel.setLayout(new BorderLayout(10, 25));
 		
 		JPanel PleaseSignUpPanel = new JPanel();
-		CompleteSignUpPanel.add(PleaseSignUpPanel, BorderLayout.NORTH);
-		CompleteSignUpPanel.setBorder(BorderFactory.createEmptyBorder());
+		CompleteSignInPanel.add(PleaseSignUpPanel, BorderLayout.NORTH);
+		CompleteSignInPanel.setBorder(BorderFactory.createEmptyBorder());
 		
-		JLabel lblPleaseSignUp = new JLabel("PLEASE SIGN IN");
-		PleaseSignUpPanel.add(lblPleaseSignUp);
+		JLabel lblPleaseSignIn = new JLabel("PLEASE SIGN IN");
+		PleaseSignUpPanel.add(lblPleaseSignIn);
 		PleaseSignUpPanel.setBorder(BorderFactory.createEmptyBorder());
 		
 		JPanel userPassConfPanel = new JPanel();
-		CompleteSignUpPanel.add(userPassConfPanel, BorderLayout.CENTER);
+		CompleteSignInPanel.add(userPassConfPanel, BorderLayout.CENTER);
 		userPassConfPanel.setLayout(new GridLayout(3, 0, 10, 10));
 		userPassConfPanel.setBorder(BorderFactory.createEmptyBorder());
 		
@@ -121,7 +125,11 @@ public class SignInPage {
 		PasswordPanel.add(PasswordTextField, BorderLayout.CENTER);
 		PasswordTextField.setColumns(10);
 		
-		
+		JLabel lbl_test_confirmation = new JLabel("");
+		lbl_test_confirmation.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lbl_test_confirmation.setForeground(Color.RED);
+		lbl_test_confirmation.setBounds(28, 192, 137, 28);
+		CompleteSignInPanel.add(lbl_test_confirmation, BorderLayout.SOUTH);
 		
 		
 		JPanel HMTKLoginPanel = new JPanel();
@@ -147,7 +155,7 @@ public class SignInPage {
 
 	        public void mouseClicked(MouseEvent e) 
 	        {
-	            System.out.print("You Successfully Logged Out");
+	            //this would normally be a redirect to the SignInPage
 	        }
 
 	    });
@@ -155,21 +163,60 @@ public class SignInPage {
 		textPaneLogin.setText("LOG IN");
 		textPaneLogin.setBackground(SystemColor.window);
 		
-		JButton SignUpButton = new JButton("Sign In");
-		SignUpButton.setBounds(414, 413, 117, 29);
+		JButton SignInButton = new JButton("Sign In");
+		SignInButton.setBounds(350, 413, 117, 29);
+		frame.getContentPane().add(SignInButton);
+		
+		JButton SignUpButton = new JButton("Sign Up");
+		SignUpButton.setBounds(500, 413, 117, 29);
 		frame.getContentPane().add(SignUpButton);
+		
+		
+		SignInButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				if(PasswordTextField.getText().equals("") || UsernameTextField.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
+				} else{
+				int userId = new Connection().
+						getUserId(
+								UsernameTextField.getText(), PasswordTextField.getText()
+								);
+				if(userId==-1) 
+				{
+					lbl_test_confirmation.setText("Login Failed");
+				}
+				else
+				{
+					lbl_test_confirmation.setText("Login Successful");
+					//every object retrieved from the database
+					//should be passed to the mediator 
+					//which represents a web session
+					//that will be passed across windows
+					mediator.setUser(
+							new User(
+							userId, UsernameTextField.getText(), PasswordTextField.getText()));
+					//this is where we would launch the next window?
+					frame.setVisible(false);
+					UserViewPage.start(mediator);
+				}
+				}
+			}
+		    });
+		
 		SignUpButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(ConfirmPasswordTextField.getText().equals("") || PasswordTextField.getText().equals("") || UsernameTextField.getText().equals(""))
-				{
-					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
-				}
-				
+				frame.setVisible(false);
+				SignUpPage.start(mediator);
 			}
-		    });
-	
+		});
+		
+
 	}
 	
 	/**
@@ -180,4 +227,3 @@ public class SignInPage {
 		 frame.setVisible(true);
 	 }
 }
-

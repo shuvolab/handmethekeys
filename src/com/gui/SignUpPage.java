@@ -1,9 +1,13 @@
 package com.gui;
+import com.database.Connection;
 /**
  * 
  * This class creates the JFrame window for the Sign Up page of Hand Me the Keys and this is also our home page 
  * for our application.
  */
+import com.engine.mediator.*;
+import com.engine.mediator.data.User;
+
 import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
@@ -36,11 +40,11 @@ public class SignUpPage {
 	/**
 	 * Launch the builder application.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignUpPage window = new SignUpPage();
+					SignUpPage window = new SignUpPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,14 +56,14 @@ public class SignUpPage {
 	/**
 	 * Create the SignUpPage frame.
 	 */
-	public SignUpPage() {
-		initializeFrame();
+	public SignUpPage(final Mediator mediator) {
+		initializeFrame(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initializeFrame() { 
+	private void initializeFrame(final Mediator mediator) { 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,7 +173,8 @@ public class SignUpPage {
 
 	        public void mouseClicked(MouseEvent e) 
 	        {
-	            System.out.print("You Successfully Logged Out");
+	            frame.setVisible(false);
+	            SignInPage.start(mediator);
 	        }
 
 	    });
@@ -187,6 +192,20 @@ public class SignUpPage {
 				if(ConfirmPasswordTextField.getText().equals("") || PasswordTextField.getText().equals("") || UsernameTextField.getText().equals(""))
 				{
 					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
+				} else {
+					int userId = new Connection().
+							getUserId(
+									UsernameTextField.getText(), PasswordTextField.getText()
+									);
+					if(userId==-1) 
+					{
+						//addUser, get UserId, set mediator user, start UserViewPage sending new mediator
+						UserViewPage.start(mediator);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "This user already exists! Try another username.");
+					}
 				}
 				
 			}

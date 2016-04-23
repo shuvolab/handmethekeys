@@ -48,20 +48,14 @@ public class Connection
 		java.sql.Connection con = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
-			java.sql.Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(q_SELECT_USERID);
-			rs.next();
-			user_id = rs.getInt("ID");
-			if(rs.wasNull())
+			
+			ResultSet rs = runQuery(q_SELECT_USERID);
+			if(rs==null||rs.wasNull())
 			{
 				return user_id;
 			}
-			con.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			rs.next();
+			user_id = rs.getInt("ID");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,9 +69,27 @@ public class Connection
 	 * @return car object constructed from the database if id match or a null object if it does not
 	 */
 	public Car getCar(int id){
-		Car car;
+		Car car = new Car();
 		//database stuff
 		return car;
+	}
+	
+	private ResultSet runQuery(String query){
+		 java.sql.Connection con = null;
+		  try {
+			  Class.forName("com.mysql.jdbc.Driver");
+			  con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
+			  java.sql.Statement stmt = con.createStatement();
+			  ResultSet rs = stmt.executeQuery(query);
+			  return rs;
+		  } catch (ClassNotFoundException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+		  } catch (SQLException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+		  }
+		  return null;
 	}
 	
 }
