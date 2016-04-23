@@ -32,6 +32,9 @@ import java.util.Date;
 import org.jdatepicker.impl.*;
 import org.jdatepicker.util.*;
 import org.jdatepicker.*;
+
+import com.engine.mediator.*;
+import com.engine.mediator.data.User;
 import com.toedter.calendar.JDateChooser;
 
 public class UserViewPage {
@@ -46,11 +49,11 @@ public class UserViewPage {
 	/**
 	 * This is the successful frame for added car into our Database.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserViewPage window = new UserViewPage();
+					UserViewPage window = new UserViewPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,38 +65,42 @@ public class UserViewPage {
 	/**
 	 * Create the application.
 	 */
-	public UserViewPage() {
-		initialize();
+	public UserViewPage(final Mediator mediator) {
+		initialize(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(final Mediator mediator) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
 		JPanel HMTKLoginPanel = new JPanel();
 		HMTKLoginPanel.setBounds(6, 6, 986, 24);
 		frame.getContentPane().add(HMTKLoginPanel);
 		HMTKLoginPanel.setLayout(new BorderLayout(0, 0));
 		HMTKLoginPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JPanel HandMeTheKeysPanel = new JPanel();
 		HMTKLoginPanel.add(HandMeTheKeysPanel, BorderLayout.WEST);
 		HandMeTheKeysPanel.setBorder(BorderFactory.createEmptyBorder());
 		JLabel SoftwareTitlelabel = new JLabel("HAND ME THE KEYS");
 		SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 20));
 		HandMeTheKeysPanel.add(SoftwareTitlelabel);
+		
 		JPanel UserAndLogOutPanel = new JPanel();
 		HMTKLoginPanel.add(UserAndLogOutPanel, BorderLayout.EAST);
 		UserAndLogOutPanel.setLayout(new GridLayout(1, 2, 0, 0));
 		UserAndLogOutPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JPanel UserAccountTextPanel = new JPanel();
 		UserAccountTextPanel.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
-
+				//this directs to this page
 			}
 
 		});
@@ -102,16 +109,19 @@ public class UserViewPage {
 		fl_UserAccountTextPanel.setVgap(10);
 		UserAndLogOutPanel.add(UserAccountTextPanel);
 		UserAccountTextPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JLabel UserTextLabel = new JLabel();
-
 		UserAccountTextPanel.add(UserTextLabel);
-		UserTextLabel.setText("USER");
+		UserTextLabel.setText(mediator.getUser().getUsername());
 		UserTextLabel.setBackground(SystemColor.window);
+		
 		JPanel LogoutTextPanel = new JPanel();
 		LogoutTextPanel.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
-				frame.dispose();
+				frame.setVisible(false);
+				mediator.setUser(new User());
+				SignInPage.start(mediator);
 			}
 
 		});
@@ -120,6 +130,7 @@ public class UserViewPage {
 		fl_LogoutTextPanel.setVgap(10);
 		UserAndLogOutPanel.add(LogoutTextPanel);
 		LogoutTextPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JLabel UserLogoutLabel = new JLabel();
 		UserLogoutLabel.setText("LOG OUT");
 		UserLogoutLabel.setBackground(SystemColor.window);
@@ -134,6 +145,7 @@ public class UserViewPage {
 		JButton btnRentedCar = new JButton("LISTED CAR");
 		btnRentedCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		panel.add(btnRentedCar);
