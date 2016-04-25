@@ -19,6 +19,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
+
+import com.engine.mediator.Mediator;
+import com.engine.mediator.data.User;
+
 import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.Color;
@@ -32,11 +36,11 @@ public class LoggedOutSuccessfullPage {
 	/**
 	 * Launch the builder application.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoggedOutSuccessfullPage window = new LoggedOutSuccessfullPage();
+					LoggedOutSuccessfullPage window = new LoggedOutSuccessfullPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,14 +53,14 @@ public class LoggedOutSuccessfullPage {
 	 * Create the SignUpPage frame.
 	 * @wbp.parser.entryPoint
 	 */
-	public LoggedOutSuccessfullPage() {
-		initializeFrame();
+	public LoggedOutSuccessfullPage(final Mediator mediator) {
+		initializeFrame(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initializeFrame() { 
+	private void initializeFrame(final Mediator mediator) { 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -111,9 +115,10 @@ public class LoggedOutSuccessfullPage {
 		
 		JLabel textPaneLogin = new JLabel();
 		textPaneLogin.addMouseListener(new MouseAdapter() {
-
-	     
-
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				SignInPage.start(mediator);
+			}
 	    });
 		LoginPanel.add(textPaneLogin);
 		textPaneLogin.setText("LOG IN");

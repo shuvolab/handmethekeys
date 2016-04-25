@@ -1,13 +1,17 @@
 package com.engine.mediator;
 
-import com.engine.mediator.data.User;
+import com.engine.mediator.data.*;
+
+import java.util.ArrayList;
 
 public class Mediator {
 
 	private User user;
+	private ArrayList<Car> carList;
 	
 	public Mediator(){
 		setUser(new User());
+		setCarList(new ArrayList<Car>());
 	}
 
 	public User getUser() {
@@ -16,6 +20,14 @@ public class Mediator {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public ArrayList<Car> getCarList(){
+		return carList;
+	}
+	
+	public void setCarList(ArrayList<Car> cars){
+		carList=cars;
 	}
 	
 }

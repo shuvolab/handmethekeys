@@ -19,6 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.database.Connection;
+import com.engine.mediator.Mediator;
+import com.engine.mediator.data.User;
+
 public class CarRecommendationResultsPage {
 
 	private JFrame frame;
@@ -28,11 +32,11 @@ public class CarRecommendationResultsPage {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CarRecommendationResultsPage window = new CarRecommendationResultsPage();
+					CarRecommendationResultsPage window = new CarRecommendationResultsPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,14 +48,14 @@ public class CarRecommendationResultsPage {
 	/**
 	 * Create the Car Recommendations Page.
 	 */
-	public CarRecommendationResultsPage() {
-		initialize();
+	public CarRecommendationResultsPage(final Mediator mediator) {
+		initialize(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() 
+	private void initialize(final Mediator mediator) 
 	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
@@ -79,12 +83,11 @@ public class CarRecommendationResultsPage {
 		
 		JPanel UserAccountTextPanel = new JPanel();
 		UserAccountTextPanel.addMouseListener(new MouseAdapter() {
-
 	        public void mouseClicked(MouseEvent e) 
 	        {
-	           //opens user page
+	           frame.setVisible(false);
+	           UserViewPage.start(mediator);
 	        }
-
 	    });
 		FlowLayout fl_UserAccountTextPanel = (FlowLayout) UserAccountTextPanel.getLayout();
 		fl_UserAccountTextPanel.setVgap(10);
@@ -93,18 +96,17 @@ public class CarRecommendationResultsPage {
 		
 		JLabel UserTextLabel = new JLabel();
 		UserAccountTextPanel.add(UserTextLabel);
-		UserTextLabel.setText("USER");
+		UserTextLabel.setText(mediator.getUser().getUsername());
 		UserTextLabel.setBackground(SystemColor.window);
 		
 		JPanel LogoutTextPanel = new JPanel();
 		LogoutTextPanel.addMouseListener(new MouseAdapter() {
-
 	        public void mouseClicked(MouseEvent e) 
 	        {
-	        	frame.dispose();
-	           //opens logoutpage
+	        	frame.setVisible(false);
+	        	mediator.setUser(new User());
+	        	LoggedOutSuccessfullPage.start(mediator);
 	        }
-
 	    });
 		FlowLayout fl_LogoutTextPanel = (FlowLayout) LogoutTextPanel.getLayout();
 		fl_LogoutTextPanel.setVgap(10);
@@ -208,7 +210,7 @@ public class CarRecommendationResultsPage {
 	*/
 	 public void populateRecommendationObjectResultList() //5 recommendation objects max
 	 {
-	 	while(!RecommendationObjects.isEmpty() || RecommendationObjects.size()<5)
+	 	while(!RecommendationObjects.isEmpty() && RecommendationObjects.size()<5)
 	 	{
 	 		RecommendationObjectResultsPanel.add(createCarRecommendationPanel());
 	 	}
@@ -237,7 +239,7 @@ public class CarRecommendationResultsPage {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				// Rent Car object
+			//	new Connection().rentCar(startDate, endDate, car);
 				
 			}
 			
