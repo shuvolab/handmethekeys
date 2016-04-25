@@ -3,7 +3,6 @@ package com.engine.mediator.data;
 public class Car {
 	private int ID, zip;
 	private String make;
-	private int ID;
 	private String brand;
 	private String model;
 	private String year;
@@ -19,7 +18,7 @@ public class Car {
 	}
 	
 
-	public Car(int id, String mk, String md, String yr, int zip, User user) {
+	public Car(int id, String br, String md, String yr, int zip, User user) {
 		setID(id);
 		setBrand(br);
 		setModel(md);

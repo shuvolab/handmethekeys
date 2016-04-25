@@ -33,6 +33,7 @@ import org.jdatepicker.impl.*;
 import org.jdatepicker.util.*;
 import org.jdatepicker.*;
 
+import com.database.Connection;
 import com.engine.mediator.*;
 import com.engine.mediator.data.Car;
 import com.engine.mediator.data.User;
@@ -122,7 +123,7 @@ public class UserViewPage {
 			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
 				mediator.setUser(new User());
-				SignInPage.start(mediator);
+				LoggedOutSuccessfullPage.start(mediator);
 			}
 
 		});
@@ -145,11 +146,18 @@ public class UserViewPage {
 		
 		JButton btnRentedCar_1 = new JButton("RENTED CAR");
 		panel.add(btnRentedCar_1);
+		btnRentedCar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				RentedCarsPage.start(mediator);
+			}
+		});
+		
 		JButton btnRentedCar = new JButton("LISTED CAR");
 		btnRentedCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				RentedCarsPage.start(mediator);
+				ListedCarsPage.start(mediator);
 			}
 		});
 		panel.add(btnRentedCar);
@@ -189,7 +197,11 @@ public class UserViewPage {
 				car.setBrand(txtBrand.getText());
 				car.setModel(txtModel_1.getText());
 				car.setYear(txtModel.getText());
+				car.setZip(Integer.parseInt(textField.getText()));
 				car.setOwner(mediator.getUser());
+				new Connection().addCar(car);
+				frame.setVisible(false);
+				CarAddSuccessfullPage.start(mediator);
 			}
 		});
 		txtZipcode = new JTextField();
@@ -198,16 +210,7 @@ public class UserViewPage {
 		txtZipcode.setBounds(585, 279, 130, 26);
 		frame.getContentPane().add(txtZipcode);
 		
-		JButton button = new JButton("SUBMIT");
-		button.setBounds(683, 443, 117, 29);
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				//search
-			}
-		});
-		frame.getContentPane().add(button);
+		
 		textField = new JTextField();
 		textField.setText("ZIPCODE");
 		textField.setColumns(10);
@@ -229,7 +232,28 @@ public class UserViewPage {
 		JLabel lblReturnDate = new JLabel("RETURN DATE");
 		lblReturnDate.setBounds(748, 317, 121, 16);
 		frame.getContentPane().add(lblReturnDate);
-
+		
+		JButton button = new JButton("SUBMIT");
+		button.setBounds(683, 443, 117, 29);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				System.out.println(dateChooser.getDateFormatString() + " "+dateChooser_1.getDateFormatString());
+				//search
+				/*ArrayList<Car> cars = new Connection().search(txtZipcode.getText(), dateChooser.getDateFormatString(), dateChooser_1.getDateFormatString());
+				frame.setVisible(false);
+				if(cars.size()==0){
+					cars = new Connection().getRandomCars(dateChooser.getDateFormatString(), dateChooser_1.getDateFormatString());				
+					mediator.setCarList(cars);
+					CarRecommendationResultsPage.start(mediator);
+				} else {
+					mediator.setCarList(cars);
+					CarResultsPage.start(mediator);
+				}*/
+			}
+		});
+		frame.getContentPane().add(button);
 	}
 
 	public void actionPerformed(ActionEvent e) {

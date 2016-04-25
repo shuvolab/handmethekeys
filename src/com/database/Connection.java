@@ -42,21 +42,30 @@ public class Connection
 	 * @param password
 	 * @return user id if pair exists or -1 if it does not
 	 */
-	public int getUserId(String username, String password){
+	public int getuser_ID(String username, String password){
 		
-		String q_SELECT_USERID = "SELECT ID FROM tbl_user WHERE username = '" + username + "' AND password = '" + password + "'";
+		String q_SELECT_user_ID = "SELECT ID FROM tbl_user WHERE username = '" + username + "' AND password = '" + password + "'";
 		int user_id = -1;
 		java.sql.Connection con = null;
-		
+		System.out.println(q_SELECT_user_ID);
 		try {
-			
-			ResultSet rs = runQuery(q_SELECT_USERID);
-			if(rs==null||rs.wasNull())
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
+			java.sql.Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(q_SELECT_user_ID);
+			if(rs.wasNull())
 			{
 				return user_id;
+			}else{
+				while(rs.next())
+				{
+				user_id = rs.getInt("ID");
+				}
 			}
-			rs.next();
-			user_id = rs.getInt("ID");
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,25 +80,8 @@ public class Connection
 	 */
 	public Car getCar(int id){
 		Car car = new Car();
-		//database stuff
-		return car;
-	}
-	
-	private ResultSet runQuery(String query){
-		 java.sql.Connection con = null;
-		  try {
-			  Class.forName("com.mysql.jdbc.Driver");
-			  con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
-			  java.sql.Statement stmt = con.createStatement();
-			  ResultSet rs = stmt.executeQuery(query);
-			  return rs;
-		  } catch (ClassNotFoundException e) {
-			  // TODO Auto-generated catch block
-			  e.printStackTrace();
-		  } catch (SQLException e) {
-			  // TODO Auto-generated catch block
-			  e.printStackTrace();
-		  }
+		
+		
 		return car;
 	}
 	
@@ -99,12 +91,13 @@ public class Connection
 	 */
 	public ArrayList<Car> search(String zipCode, String startDate, String endDate)
 	{
-		String SELECT = "SELECT tbl_car.ID, tbl_car.Brand, tbl_car.Model, tbl_car.Year, tbl_car.Zip, tbl_car.userID"
+		String SELECT = "SELECT tbl_car.ID, tbl_car.Brand, tbl_car.Model, tbl_car.Year, tbl_car.zipcode, tbl_car.user_ID"
 					  + "FROM tbl_car, tbl_availability "
-					  + "WHERE tbl_car.zip LIKE '" + zipCode.substring(0, 3) + "%' AND "
+					  + "WHERE tbl_car.zipcode LIKE '" + zipCode.substring(0, 3) + "%' AND "
 					  + "tbl_car.ID = tbl_availability.car_ID AND ("
 					  + "tbl_availability.START_DATE > '" + endDate 
 					  + "' OR tbl_availability.END_DATE < '" + startDate + "')";
+		System.out.println(SELECT);
 		ArrayList<Car> cars = new ArrayList<Car>();
 		ResultSet rs = runQuery(SELECT);
 		try {
@@ -115,7 +108,7 @@ public class Connection
 						rs.getString("Brand"),
 						rs.getString("Model"),
 						rs.getString("Year"),
-						rs.getInt("Zip"),
+						rs.getInt("zipcode"),
 						getUser(rs.getString("OwnerID")))); //change ownerID to real name
 			}
 		} catch (SQLException e) {
@@ -123,7 +116,7 @@ public class Connection
 			e.printStackTrace();
 		}
 		return cars;
-	}
+}
 	
 	/**
 	 * 
@@ -132,6 +125,7 @@ public class Connection
 	 */
 	private User getUser(String id) {
 		String SELECT = "SELECT * FROM tbl_user WHERE ID = '" + id + "'";
+		System.out.println(SELECT);
 		ResultSet rs = runQuery(SELECT);
 		User user = null;
 		try {
@@ -148,6 +142,7 @@ public class Connection
 	
 	private User getUser(String name, String pwd) {
 		String SELECT = "SELECT * FROM tbl_user WHERE username = '" + name + "','" + pwd + "'";
+		System.out.println(SELECT);
 		ResultSet rs = runQuery(SELECT);
 		User user = null;
 		try {
@@ -169,12 +164,14 @@ public class Connection
 	 */
 	public void addCar(Car car)
 	{
-		String INSERT = "INSERT INTO tbl_car VALUES('"
+		String INSERT = "INSERT INTO tbl_car(Model,YEAR,BRAND,user_id,zipcode) VALUES('"
 				+ car.getModel()  + "','"
 				+ car.getYear() + "','"
 				+ car.getMake() + "','"
 				+ car.getOwner().getID() + "','"
+				+ car.getZip() + "','"
 				+ ")";
+		System.out.println(INSERT);
 		java.sql.Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -190,12 +187,14 @@ public class Connection
 		}
 	}
 
-	public void rentCar(String startDate, String endDate, Car car)
+	public void rentCar(String startDate, String endDate, Car car, User user)
 	{
-		String INSERT = "INSERT INTO tbl_availability VALUES('" 
+		String INSERT = "INSERT INTO tbl_availability(START_DATE, END_DATE, car_ID, user_ID) VALUES('" 
 						+ startDate + "','" 
 						+ endDate + "','" 
-						+ car.getOwner().getID() + "'";
+						+ car.getID() + "','"
+						+ user.getID() + "')";
+		System.out.println(INSERT);
 		java.sql.Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -235,16 +234,18 @@ public class Connection
 		  }
 		  return null;
 	}
-
+	
 	public void addUser(String username, String password)
 	{
-		String INSERT = "INSERT INTO tbl_user VALUES('" + username + "','" + password + "'";
+		String INSERT = "INSERT INTO tbl_user(username, password) VALUES('" + username + "','" + password + "')";
 		java.sql.Connection con = null;
+		System.out.println(INSERT);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
 			java.sql.Statement stmt = con.createStatement();
 			stmt.executeUpdate(INSERT);
+			con.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -253,5 +254,59 @@ public class Connection
 			e.printStackTrace();
 		}
 	}
-
+	
+	public ArrayList<Car> getRentedCars(User user)
+	{
+		String SELECT = "SELECT * FROM tbl_car WHERE ID in "
+					  + "(SELECT DISTINCT tbl_availability.car_ID FROM tbl_availability"
+					  + "WHERE tbl_availability.user_ID = '" + user.getID() + "')";
+		System.out.println(SELECT);
+		ArrayList<Car> cars = new ArrayList<Car>();
+		ResultSet rs = runQuery(SELECT);
+		try {
+			while(rs.next())
+			{
+				cars.add(new Car(
+						rs.getInt("ID"),
+						rs.getString("Brand"),
+						rs.getString("Model"),
+						rs.getString("Year"),
+						rs.getInt("zipcode"),
+						getUser(rs.getString("OwnerID"))));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cars;
+	}
+	
+	public ArrayList<Car> getRandomCars(String startDate, String endDate)
+	{
+		String SELECT = "SELECT tbl_car.ID, tbl_car.Brand, tbl_car.Model, tbl_car.Year, tbl_car.zipcode, tbl_car.user_ID"
+				  + "FROM tbl_car, tbl_availability "
+				  + "WHERE tbl_car.ID = tbl_availability.car_ID AND ("
+				  + "tbl_availability.START_DATE > '" + endDate 
+				  + "' OR tbl_availability.END_DATE < '" + startDate + "')";
+		System.out.println(SELECT);
+		ArrayList<Car> cars = new ArrayList<Car>();
+		ResultSet rs = runQuery(SELECT);
+		try {
+			while(rs.next())
+			{
+				cars.add(new Car(
+						rs.getInt("ID"),
+						rs.getString("Brand"),
+						rs.getString("Model"),
+						rs.getString("Year"),
+						rs.getInt("zipcode"),
+						getUser(rs.getString("OwnerID")))); //change ownerID to real name
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cars;
+	}
+	
 }

@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 
+import com.engine.mediator.Mediator;
+
 public class ListedCarsPage {
 
 	private JFrame frame;
@@ -31,11 +33,11 @@ public class ListedCarsPage {
 	/**
 	 * This is the successful frame for added car into our Database.
 	 */
-	public static void main(String[] args) {
+	public static void start(final Mediator mediator) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListedCarsPage window = new ListedCarsPage();
+					ListedCarsPage window = new ListedCarsPage(mediator);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,72 +49,86 @@ public class ListedCarsPage {
 	/**
 	 * Create the Listed Cars Page.
 	 */
-	public ListedCarsPage() {
-		initialize();
+	public ListedCarsPage(final Mediator mediator) {
+		initialize(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(final Mediator mediator) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
 		JPanel HMTKLoginPanel = new JPanel();
 		HMTKLoginPanel.setBounds(6, 6, 986, 24);
 		frame.getContentPane().add(HMTKLoginPanel);
 		HMTKLoginPanel.setLayout(new BorderLayout(0, 0));
 		HMTKLoginPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JPanel HandMeTheKeysPanel = new JPanel();
 		HMTKLoginPanel.add(HandMeTheKeysPanel, BorderLayout.WEST);
 		HandMeTheKeysPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JLabel SoftwareTitlelabel = new JLabel("HAND ME THE KEYS");
 		SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 20));
 		HandMeTheKeysPanel.add(SoftwareTitlelabel);
+		
 		JPanel UserAndLogOutPanel = new JPanel();
 		HMTKLoginPanel.add(UserAndLogOutPanel, BorderLayout.EAST);
 		UserAndLogOutPanel.setLayout(new GridLayout(1, 2, 0, 0));
 		UserAndLogOutPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JPanel UserAccountTextPanel = new JPanel();
 		UserAccountTextPanel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				frame.setVisible(false);
+				UserViewPage.start(mediator);
 			}
 		});
 		FlowLayout fl_UserAccountTextPanel = (FlowLayout) UserAccountTextPanel.getLayout();
 		fl_UserAccountTextPanel.setVgap(10);
 		UserAndLogOutPanel.add(UserAccountTextPanel);
 		UserAccountTextPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JLabel UserTextLabel = new JLabel();
-
 		UserAccountTextPanel.add(UserTextLabel);
-		UserTextLabel.setText("USER");
+		UserTextLabel.setText(mediator.getUser().getUsername());
 		UserTextLabel.setBackground(SystemColor.window);
+		
 		JPanel LogoutTextPanel = new JPanel();
 		LogoutTextPanel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				frame.dispose();
+				frame.setVisible(false);
+				LoggedOutSuccessfullPage.start(mediator);
 			}
 		});
 		FlowLayout fl_LogoutTextPanel = (FlowLayout) LogoutTextPanel.getLayout();
 		fl_LogoutTextPanel.setVgap(10);
 		UserAndLogOutPanel.add(LogoutTextPanel);
 		LogoutTextPanel.setBorder(BorderFactory.createEmptyBorder());
+		
 		JLabel UserLogoutLabel = new JLabel();
 		UserLogoutLabel.setText("LOG OUT");
 		UserLogoutLabel.setBackground(SystemColor.window);
 		LogoutTextPanel.add(UserLogoutLabel);
+		
 		JPanel LISTEDorRENTEDButton = new JPanel();
 		LISTEDorRENTEDButton.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		LISTEDorRENTEDButton.setBounds(47, 116, 290, 50);
 		frame.getContentPane().add(LISTEDorRENTEDButton);
 		LISTEDorRENTEDButton.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 		JButton btnRentedCar_1 = new JButton("RENTED CAR");
 		LISTEDorRENTEDButton.add(btnRentedCar_1);
+		
 		JButton btnRentedCar = new JButton("LISTED CAR");
-		btnRentedCar.addActionListener(new ActionListener() {
+		btnRentedCar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				RentedCarsPage.start(mediator);
 			}
 		});
 		LISTEDorRENTEDButton.add(btnRentedCar);
@@ -126,8 +142,10 @@ public class ListedCarsPage {
 		YourRentedCarsText.setBorder(BorderFactory.createEmptyBorder());
 		YourRentedCarsText.setBounds(6, 185, 155, 24);
 		frame.getContentPane().add(YourRentedCarsText);
+		
 		JLabel lblYourRentedCars = new JLabel("YOUR LISTED CARS");
 		YourRentedCarsText.add(lblYourRentedCars);
+		createListedCarPanel();
 		//UNCOMMENT THIS BLOCK OF CODE TO SEE WHAT THE LISTED CAR PANEL LOOKS LIKE
 		/*JPanel ListedCar = new JPanel();
 		ListedCar.setBounds(421, 398, 403, 84);

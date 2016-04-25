@@ -140,7 +140,7 @@ public class SignUpPage {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(ConfirmPasswordTextField.getText().equals(PasswordTextField.getText()))
+				if(!ConfirmPasswordTextField.getText().equals(PasswordTextField.getText()))
 				{
 					JOptionPane.showMessageDialog(null, "Please make sure the two passwords match!");
 				}
@@ -201,8 +201,12 @@ public class SignUpPage {
 					{
 						//addUser, get UserId, set mediator user, start UserViewPage sending new mediator
 						Connection connection = new Connection();
-						connection.addUser(UsernameTextField.getText(),PasswordTextField.getText());
-						mediator.setUser(connection.getUser(UsernameTextField.getText(),PasswordTextField.getText());
+						User user=new User();
+						user.setUsername(UsernameTextField.getText()); user.setPassword(PasswordTextField.getText());
+						connection.addUser(user.getUsername(),user.getPassword());
+						user.setID(connection.getUserId(user.getUsername(), user.getPassword()));
+						mediator.setUser(user);
+						frame.setVisible(false);
 						UserViewPage.start(mediator);
 					}
 					else

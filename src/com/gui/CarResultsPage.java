@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.engine.mediator.Mediator;
+import com.engine.mediator.data.User;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -29,7 +33,7 @@ public class CarResultsPage {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args)
+	public static void start(final Mediator mediator)
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
@@ -37,7 +41,7 @@ public class CarResultsPage {
 			{
 				try 
 				{
-					CarResultsPage window = new CarResultsPage();
+					CarResultsPage window = new CarResultsPage(mediator);
 					window.frame.setVisible(true);
 				} 
 				catch (Exception e) 
@@ -51,15 +55,15 @@ public class CarResultsPage {
 	/**
 	 * Create the Car Results Page.
 	 */
-	public CarResultsPage()
+	public CarResultsPage(final Mediator mediator)
 	{
-		initialize();
+		initialize(mediator);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() 
+	private void initialize(final Mediator mediator) 
 	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 998, 594);
@@ -90,7 +94,8 @@ public class CarResultsPage {
 
 	        public void mouseClicked(MouseEvent e) 
 	        {
-	           //opens user page
+	           frame.setVisible(false);
+	           UserViewPage.start(mediator);
 	        }
 
 	    });
@@ -109,11 +114,9 @@ public class CarResultsPage {
 
 	        public void mouseClicked(MouseEvent e) 
 	        {
-	        	
-	        	//CarRecommendationResultsPage page= new CarRecommendationResultsPage();
-	        	//page.setvisible();
-	        	frame.dispose();
-	            //opens login page
+	        	frame.setVisible(false);
+	        	mediator.setUser(new User());
+	        	LoggedOutSuccessfullPage.start(mediator);
 	        }
 
 	    });
@@ -215,14 +218,7 @@ public class CarResultsPage {
 		
 		JLabel lblZipCode = new JLabel("ZIP CODE");
 		Zippanel.add(lblZipCode);
-		*/
-	
-<<<<<<< Updated upstream
 	}
-=======
-	
-}
->>>>>>> Stashed changes
 	
 	/**
 	 * Populate the ArrayList with Car objects from the database
