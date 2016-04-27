@@ -194,7 +194,7 @@ public class SignUpPage {
 					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
 				} else {
 					int userId = new Connection().
-							getUserId(
+							getuser_ID(
 									UsernameTextField.getText(), PasswordTextField.getText()
 									);
 					if(userId==-1) 
@@ -204,7 +204,7 @@ public class SignUpPage {
 						User user=new User();
 						user.setUsername(UsernameTextField.getText()); user.setPassword(PasswordTextField.getText());
 						connection.addUser(user.getUsername(),user.getPassword());
-						user.setID(connection.getUserId(user.getUsername(), user.getPassword()));
+						user.setID(connection.getuser_ID(user.getUsername(), user.getPassword()));
 						mediator.setUser(user);
 						frame.setVisible(false);
 						UserViewPage.start(mediator);

@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -239,18 +240,21 @@ public class UserViewPage {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				System.out.println(dateChooser.getDateFormatString() + " "+dateChooser_1.getDateFormatString());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String startDate = sdf.format(dateChooser.getDate());
+				String endDate = sdf.format(dateChooser_1.getDate());
+				System.out.println(startDate +" "+ endDate);
 				//search
-				/*ArrayList<Car> cars = new Connection().search(txtZipcode.getText(), dateChooser.getDateFormatString(), dateChooser_1.getDateFormatString());
+				ArrayList<Car> cars = new Connection().search(txtZipcode.getText(), startDate, endDate);
 				frame.setVisible(false);
 				if(cars.size()==0){
-					cars = new Connection().getRandomCars(dateChooser.getDateFormatString(), dateChooser_1.getDateFormatString());				
+					cars = new Connection().getRandomCars(startDate, endDate);				
 					mediator.setCarList(cars);
 					CarRecommendationResultsPage.start(mediator);
 				} else {
 					mediator.setCarList(cars);
 					CarResultsPage.start(mediator);
-				}*/
+				}
 			}
 		});
 		frame.getContentPane().add(button);

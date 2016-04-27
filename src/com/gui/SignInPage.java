@@ -182,7 +182,7 @@ public class SignInPage {
 					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
 				} else{
 				int userId = new Connection().
-						getUserId(
+						getuser_ID(
 								UsernameTextField.getText(), PasswordTextField.getText()
 								);
 				if(userId==-1) 
