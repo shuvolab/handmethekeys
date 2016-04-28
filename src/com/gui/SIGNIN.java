@@ -89,7 +89,7 @@ public class SIGNIN extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//get userId from the database
 				int userId = new Connection().
-						getUserId(
+							getuser_ID(
 								txtLogin.getText(), txtPassword.getText()
 								);
 				if(userId==-1) 

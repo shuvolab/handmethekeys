@@ -68,7 +68,7 @@ public class Car {
 	}
 	
 	public String toString(){
-		String car = "Make: "+brand+" Model: "+model+" Year: "+year;
+		String car = "Make: "+brand+" Model: "+model+" Year: "+year+"Zipcode: "+zip;
 		return car;
 	}
 

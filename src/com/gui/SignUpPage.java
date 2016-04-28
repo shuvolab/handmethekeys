@@ -65,7 +65,7 @@ public class SignUpPage {
 	 */
 	private void initializeFrame(final Mediator mediator) { 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 998, 594);
+		frame.setBounds(100, 100, 1010, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -161,7 +161,7 @@ public class SignUpPage {
 		HandMeTheKeysPanel.setBorder(BorderFactory.createEmptyBorder());
 		
 		JLabel SoftwareTitlelabel = new JLabel("HAND ME THE KEYS");
-		SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 20));
+		SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 18));
 		HandMeTheKeysPanel.add(SoftwareTitlelabel);
 		
 		JPanel LoginPanel = new JPanel();
@@ -194,7 +194,7 @@ public class SignUpPage {
 					JOptionPane.showMessageDialog(null, "Please make sure all fields are filled!");
 				} else {
 					int userId = new Connection().
-							getUserId(
+							getuser_ID(
 									UsernameTextField.getText(), PasswordTextField.getText()
 									);
 					if(userId==-1) 
@@ -204,7 +204,7 @@ public class SignUpPage {
 						User user=new User();
 						user.setUsername(UsernameTextField.getText()); user.setPassword(PasswordTextField.getText());
 						connection.addUser(user.getUsername(),user.getPassword());
-						user.setID(connection.getUserId(user.getUsername(), user.getPassword()));
+						user.setID(connection.getuser_ID(user.getUsername(), user.getPassword()));
 						mediator.setUser(user);
 						frame.setVisible(false);
 						UserViewPage.start(mediator);
