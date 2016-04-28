@@ -69,18 +69,7 @@ public class Connection {
         return user_id;
     }
 
-    /**
-     * Get a Car's info from the database by the id
-     *
-     * @param id
-     * @return car object constructed from the database if id match or a null object if it does not
-     */
-    public Car getCar(int id) {
-        Car car = new Car();
 
-
-        return car;
-    }
 
     /**
      * @param zipCode
@@ -98,13 +87,15 @@ public class Connection {
         ResultSet rs = runQuery(SELECT);
         try {
             while (rs.next()) {
-                cars.add(new Car(
+                Car car = new Car(
                         rs.getInt("ID"),
                         rs.getString("Brand"),
                         rs.getString("Model"),
                         rs.getString("Year"),
                         rs.getInt("zipcode"),
-                        getUser(rs.getString("user_ID")))); //change ownerID to real name
+                        getUser(rs.getString("user_ID")));
+                cars.add(car); //change ownerID to real name
+                System.out.println(car.toString());
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -145,15 +136,34 @@ public class Connection {
         }
         return user;
     }
+    public void deleteCar(Car car){
+        String DELETE = "DELETE FROM tbl_car "
+                + "WHERE "
+                + " tbl_car.ID = '" + car.getID() +"'";
+        System.out.println(DELETE);
+        java.sql.Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(JDBC_CONNECTION_URI, db_username, db_password);
+            java.sql.Statement stmt = con.createStatement();
+            stmt.executeUpdate(DELETE);
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-    public void updateCar(Car car){
+    public void updateCar(String model, String year, String brand, int ownerID, int zip, int carID){
         String UPDATE = "UPDATE tbl_car "
-                + "SET car.Model = '" +car.getModel()
-                + "', car.Year = '" +car.getYear()
-                + "', car.BRAND = '"+car.getMake()
-                + "', car.user_id = '"+car.getOwner().getID()
-                + "', car.zipcode = '"+car.getZip()
-                + "' WHERE car.ID = '" + car.getID() +"' ";
+                + "SET car.Model = '" +model
+                + "', car.Year = '" +year
+                + "', car.BRAND = '"+brand
+                + "', car.user_id = '"+ownerID
+                + "', car.zipcode = '"+zip
+                + "' WHERE car.ID = '" + carID +"' ";
         System.out.println(UPDATE);
         java.sql.Connection con = null;
         try {
@@ -177,7 +187,7 @@ public class Connection {
                 + car.getYear() + "','"
                 + car.getMake() + "','"
                 + car.getOwner().getID() + "','"
-                + car.getZip() + "',')";
+                + car.getZip() + "')";
         System.out.println(INSERT);
         java.sql.Connection con = null;
         try {
@@ -261,20 +271,22 @@ public class Connection {
 
     public ArrayList<Car> getRentedCars(User user) {
         String SELECT = "SELECT * FROM tbl_car, tbl_availability "
-                + "WHERE tbl_car.user_id = '" + user.getID() + "' "
-                + "AND tbl_car.user_id = tbl_availability.user_ID";
+                + "WHERE tbl_availability.user_id = '" + user.getID() + "' "
+                + "AND tbl_car.ID = tbl_availability.car_ID ";
         System.out.println(SELECT);
         ArrayList<Car> cars = new ArrayList<Car>();
         ResultSet rs = runQuery(SELECT);
         try {
             while (rs.next()) {
-                cars.add(new Car(
+                Car car = new Car(
                         rs.getInt("ID"),
                         rs.getString("Brand"),
                         rs.getString("Model"),
                         rs.getString("Year"),
                         rs.getInt("zipcode"),
-                        getUser(rs.getString("user_ID"))));
+                        getUser(rs.getString("user_ID")));
+                cars.add(car);
+                System.out.println(car.toString());
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

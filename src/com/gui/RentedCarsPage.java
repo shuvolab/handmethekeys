@@ -12,12 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 
@@ -140,7 +135,10 @@ public class RentedCarsPage {
         JPanel RentedCarList = new JPanel();
         RentedCarList.setBounds(21, 221, 385, 329);
         frame.getContentPane().add(RentedCarList);
-        RentedCarList.setLayout(new GridLayout(5, 1, 0, 5));
+        RentedCarList.setLayout(new GridLayout(6, 1, 0, 5));
+
+        JScrollPane scrPane = new JScrollPane(RentedCarList);
+        frame.getContentPane().add(scrPane);
 
         JPanel YourRentedCarsText = new JPanel();
         YourRentedCarsText.setBorder(BorderFactory.createEmptyBorder());
@@ -288,6 +286,7 @@ public class RentedCarsPage {
 
         //textFields 0
         textFields.add(new JTextField());
+        textFields.get(0).setText(String.valueOf(car.getZip()));
         panels.get(5).add(textFields.get(0), BorderLayout.CENTER);
         textFields.get(0).setColumns(10);
 
@@ -299,6 +298,7 @@ public class RentedCarsPage {
 
         //textFields 1
         textFields.add(new JTextField());
+        textFields.get(1).setText(car.getMake());
         panels.get(6).add(textFields.get(1), BorderLayout.CENTER);
         textFields.get(1).setColumns(10);
 
@@ -320,6 +320,7 @@ public class RentedCarsPage {
 
         //textFields 2
         textFields.add(new JTextField());
+        textFields.get(2).setText(car.getYear());
         panels.get(8).add(textFields.get(2), BorderLayout.CENTER);
         textFields.get(2).setColumns(10);
 
@@ -339,6 +340,7 @@ public class RentedCarsPage {
 
         //textFields 3
         textFields.add(new JTextField());
+        textFields.get(3).setText(car.getModel());
         panels.get(9).add(textFields.get(3), BorderLayout.CENTER);
         textFields.get(3).setColumns(10);
 

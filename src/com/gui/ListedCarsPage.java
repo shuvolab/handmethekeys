@@ -23,10 +23,7 @@ import com.engine.mediator.data.Car;
 public class ListedCarsPage {
 
     private JFrame frame;
-    private JTextField txtCarYear;
-    private JTextField txtModel_1;
-    private JTextField txtBrand;
-    private JTextField textField;
+    private Mediator mediator;
 
     /**
      * This is the successful frame for added car into our Database.
@@ -55,6 +52,8 @@ public class ListedCarsPage {
      * Initialize the contents of the frame.
      */
     private void initialize(final Mediator mediator) {
+        this.mediator=mediator;
+
         frame = new JFrame();
         frame.setBounds(100, 100, 998, 594);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -130,50 +129,59 @@ public class ListedCarsPage {
             }
         });
         LISTEDorRENTEDButton.add(btnRentedCar);
-/*
+
         JPanel RentedCarList = new JPanel();
         RentedCarList.setBounds(21, 221, 385, 329);
         frame.getContentPane().add(RentedCarList);
-        RentedCarList.setLayout(new GridLayout(5, 1, 0, 5));
+        RentedCarList.setLayout(new GridLayout(6, 1, 0, 5));
+
+        JScrollPane scrPane = new JScrollPane(RentedCarList);
+        frame.getContentPane().add(scrPane);
 
         JPanel YourRentedCarsText = new JPanel();
         YourRentedCarsText.setBorder(BorderFactory.createEmptyBorder());
         YourRentedCarsText.setBounds(6, 185, 155, 24);
-        frame.getContentPane().add(YourRentedCarsText);*/
+        frame.getContentPane().add(YourRentedCarsText);
 
-        JPanel List = new JPanel();
-        List.setBorder(BorderFactory.createEmptyBorder());
-        List.setLayout(new GridLayout(5,1));
-        List.setBounds(101, 225, 700, 84);
+        JLabel lblYourRentedCars = new JLabel("YOUR LISTED CARS");
+        YourRentedCarsText.add(lblYourRentedCars);
 
-
-        JScrollPane scrPane = new JScrollPane(List);
-        frame.add(scrPane);
-
-        ArrayList<Car> carList = new Connection().getListedCars(mediator.getUser());
+        ArrayList<Car> rentedCarList = new Connection().getListedCars(mediator.getUser());
         ArrayList<ArrayList<JPanel>> panels = new ArrayList<>(); ArrayList<ArrayList<JLabel>> labels = new ArrayList<>();
-        ArrayList<ArrayList<JTextField>> textFields = new ArrayList<>(); ArrayList<JButton> button = new ArrayList<>();
-        for (int i=0;i<5&&i<carList.size();i++) {
+        ArrayList<ArrayList<JTextField>> textFields = new ArrayList<>();
+        for (int i=0;i<rentedCarList.size();i++) {
             panels.add(new ArrayList<JPanel>());
             labels.add(new ArrayList<JLabel>());
             textFields.add(new ArrayList<JTextField>());
-            button.add(new JButton());
-            List.add(createListedCarPanel(carList.get(i), panels.get(i), labels.get(i),textFields.get(i),button.get(i),i));
+            createRentedCarPanel(rentedCarList.get(i), panels.get(i), labels.get(i),textFields.get(i),i);
         }
-        frame.getContentPane().add(List,BorderLayout.SOUTH);
-
         //UNCOMMENT THIS BLOCK OF CODE TO SEE WHAT THE LISTED CAR PANEL LOOKS LIKE
         /*
+		JPanel RentedCar = new JPanel();
+		frame.getContentPane().add(RentedCar);
+		RentedCar.setLayout(new GridLayout(rentedCarList.size(),1));
+		for(int i=0;i<rentedCarList.size();i++){
+			display.add(i, new JLabel());
+			display.get(i).setText(rentedCarList.get(i).toString());
+			RentedCar.add(display.get(i));
+		}
+/*
+		JPanel EDITDELETEPanel = new JPanel();
+		EDITDELETEPanel.setBorder(BorderFactory.createEmptyBorder());
+		EDITDELETEPanel.setBounds(336, 383, 224, 71);
+		RentedCar.add(EDITDELETEPanel, BorderLayout.EAST);
+		EDITDELETEPanel.setLayout(new BorderLayout(0, 0));
 
+		JPanel RENTALSTATUSPANEL = new JPanel();
+		RENTALSTATUSPANEL.setBorder(BorderFactory.createEmptyBorder());
+		EDITDELETEPanel.add(RENTALSTATUSPANEL, BorderLayout.CENTER);
 
-
-		JPanel ListedCar = new JPanel();
-		ListedCar.setBounds(421, 398, 403, 84);
-		frame.getContentPane().add(ListedCar);
-		ListedCar.setLayout(new BorderLayout(0, 0));
+		JLabel RentalStatusPanel = new JLabel();
+		RentalStatusPanel.setText("RENTED OR NOT");
+		RENTALSTATUSPANEL.add(RentalStatusPanel);
 
 		JPanel YearModelBrandZipPanel = new JPanel();
-		ListedCar.add(YearModelBrandZipPanel, BorderLayout.WEST);
+		RentedCar.add(YearModelBrandZipPanel, BorderLayout.WEST);
 		YearModelBrandZipPanel.setLayout(new BorderLayout(0, 0));
 		YearModelBrandZipPanel.setBorder(BorderFactory.createEmptyBorder());
 
@@ -190,17 +198,10 @@ public class ListedCarsPage {
 		JLabel lblZipCode = new JLabel("ZIP CODE");
 		ZIPCODEPanel.add(lblZipCode, BorderLayout.NORTH);
 
-		textField = new JTextField();
-		ZIPCODEPanel.add(textField, BorderLayout.CENTER);
-		textField.setColumns(10);
-
 		JPanel BrandPanel = new JPanel();
 		BrandZipPanel.add(BrandPanel, BorderLayout.WEST);
 		BrandPanel.setBorder(BorderFactory.createEmptyBorder());
 		BrandPanel.setLayout(new BorderLayout(0, 0));
-		txtBrand = new JTextField();
-		BrandPanel.add(txtBrand, BorderLayout.CENTER);
-		txtBrand.setColumns(10);
 
 		JLabel lblBrand = new JLabel("BRAND");
 		BrandPanel.add(lblBrand, BorderLayout.NORTH);
@@ -214,9 +215,6 @@ public class ListedCarsPage {
 		YearModelPanel.add(CarYearPanel, BorderLayout.WEST);
 		CarYearPanel.setBorder(BorderFactory.createEmptyBorder());
 		CarYearPanel.setLayout(new BorderLayout(0, 0));
-		txtCarYear = new JTextField();
-		CarYearPanel.add(txtCarYear, BorderLayout.CENTER);
-		txtCarYear.setColumns(10);
 
 		JLabel lblCarYear = new JLabel("CAR YEAR");
 		CarYearPanel.add(lblCarYear, BorderLayout.NORTH);
@@ -228,22 +226,123 @@ public class ListedCarsPage {
 
 		JLabel lblModel = new JLabel("MODEL");
 		ModelPanel.add(lblModel, BorderLayout.NORTH);
-		txtModel_1 = new JTextField();
-		ModelPanel.add(txtModel_1, BorderLayout.CENTER);
-		txtModel_1.setColumns(10);
-		
-		JPanel EditDeletePanel = new JPanel();
-		ListedCar.add(EditDeletePanel, BorderLayout.CENTER);
-		EditDeletePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		EditDeletePanel.setBorder(BorderFactory.createEmptyBorder());
-		
-		JButton btnEdit = new JButton("EDIT");
-		EditDeletePanel.add(btnEdit);
-		
-		JButton btnDelete = new JButton("DELETE");
-		EditDeletePanel.add(btnDelete);
-		// Displays ON RENT or AVAILABLE if the car is currently us
 		*/
+
+    }
+
+    /**
+     * sets the frame visible for the class
+     */
+
+    public JPanel createRentedCarPanel(Car car,
+                                       ArrayList<JPanel> panels, ArrayList<JLabel> labels, ArrayList<JTextField> textFields,
+                                       int num) {
+        //panels 0
+        panels.add(new JPanel());
+        panels.get(0).setBounds(101, 225 + num * 100, 403, 84);
+        frame.getContentPane().add(panels.get(0));
+        panels.get(0).setLayout(new BorderLayout(0, 0));
+
+        //panels 1
+        panels.add(new JPanel());
+        panels.get(1).setBorder(BorderFactory.createEmptyBorder());
+        panels.get(1).setBounds(336, 383, 224, 71);
+        panels.get(0).add(panels.get(1), BorderLayout.EAST);
+        panels.get(1).setLayout(new BorderLayout(0, 0));
+
+        //panels 2
+        panels.add(new JPanel());
+        panels.get(2).setBorder(BorderFactory.createEmptyBorder());
+        panels.get(1).add(panels.get(2), BorderLayout.CENTER);
+
+        //labels 0
+        labels.add(new JLabel());
+        labels.get(0).setText("");
+        panels.get(2).add(labels.get(0));
+
+        //panels 3
+        panels.add(new JPanel());
+        panels.get(0).add(panels.get(3), BorderLayout.WEST);
+        panels.get(3).setLayout(new BorderLayout(0, 0));
+        panels.get(3).setBorder(BorderFactory.createEmptyBorder());
+
+        //panels 4
+        panels.add(new JPanel());
+        panels.get(3).add(panels.get(4), BorderLayout.SOUTH);
+        panels.get(4).setLayout(new BorderLayout(0, 0));
+        panels.get(4).setBorder(BorderFactory.createEmptyBorder());
+
+        //panels 5
+        panels.add(new JPanel());
+        panels.get(4).add(panels.get(5), BorderLayout.EAST);
+        panels.get(5).setLayout(new BorderLayout(0, 0));
+        panels.get(5).setBorder(BorderFactory.createEmptyBorder());
+
+        //labels 1
+        labels.add(new JLabel("ZIP CODE"));
+        panels.get(5).add(labels.get(1), BorderLayout.NORTH);
+
+        //textFields 0
+        textFields.add(new JTextField());
+        textFields.get(0).setText(String.valueOf(car.getZip()));
+        panels.get(5).add(textFields.get(0), BorderLayout.CENTER);
+        textFields.get(0).setColumns(10);
+
+        //panels 6
+        panels.add(new JPanel());
+        panels.get(4).add(panels.get(6), BorderLayout.WEST);
+        panels.get(6).setBorder(BorderFactory.createEmptyBorder());
+        panels.get(6).setLayout(new BorderLayout(0, 0));
+
+        //textFields 1
+        textFields.add(new JTextField());
+        textFields.get(1).setText(car.getMake());
+        panels.get(6).add(textFields.get(1), BorderLayout.CENTER);
+        textFields.get(1).setColumns(10);
+
+        //labels 2
+        labels.add(new JLabel("BRAND"));
+        panels.get(6).add(labels.get(2), BorderLayout.NORTH);
+
+        //panels 7
+        panels.add(new JPanel());
+        panels.get(3).add(panels.get(7), BorderLayout.NORTH);
+        panels.get(7).setLayout(new BorderLayout(0, 0));
+        panels.get(7).setBorder(BorderFactory.createEmptyBorder());
+
+        //panels 8
+        panels.add(new JPanel());
+        panels.get(7).add(panels.get(8), BorderLayout.WEST);
+        panels.get(8).setBorder(BorderFactory.createEmptyBorder());
+        panels.get(8).setLayout(new BorderLayout(0, 0));
+
+        //textFields 2
+        textFields.add(new JTextField());
+        textFields.get(2).setText(car.getYear());
+        panels.get(8).add(textFields.get(2), BorderLayout.CENTER);
+        textFields.get(2).setColumns(10);
+
+        //labels 3
+        labels.add(new JLabel("CAR YEAR"));
+        panels.get(8).add(labels.get(3), BorderLayout.NORTH);
+
+        //panels 9
+        panels.add(new JPanel());
+        panels.get(7).add(panels.get(9), BorderLayout.EAST);
+        panels.get(9).setBorder(BorderFactory.createEmptyBorder());
+        panels.get(9).setLayout(new BorderLayout(0, 0));
+
+        //labels 4
+        labels.add(new JLabel("MODEL"));
+        panels.get(9).add(labels.get(4), BorderLayout.NORTH);
+
+        //textFields 3
+        textFields.add(new JTextField());
+        textFields.get(3).setText(car.getModel());
+        panels.get(9).add(textFields.get(3), BorderLayout.CENTER);
+        textFields.get(3).setColumns(10);
+
+        return panels.get(0);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -254,22 +353,22 @@ public class ListedCarsPage {
      * sets the frame visible for the class
      */
 
-    public JPanel createListedCarPanel(Car car,
+    public void createListedCarPanel(JPanel contPanel, Car car,
                                        ArrayList<JPanel> panels, ArrayList<JLabel> labels, ArrayList<JTextField> textFields,
                                        JButton button,
                                        int num) {
         //panels 0
         panels.add(new JPanel());
-        panels.get(0).setBounds(101, 225 + num * 100, 403, 84);
+        panels.get(0).setBounds(101, 225 + num * 200, 403, 200);
         //frame.getContentPane().add(panels.get(0));
-        panels.get(0).setLayout(new BorderLayout(0, 0));
+        panels.get(0).setLayout(new BorderLayout());
 
         //panels 1
         panels.add(new JPanel());
         panels.get(1).setBorder(BorderFactory.createEmptyBorder());
-        panels.get(1).setBounds(336, 383, 224, 71);
+        panels.get(1).setBounds(101, 225+num*100, 224, 200);
         panels.get(0).add(panels.get(1), BorderLayout.EAST);
-        panels.get(1).setLayout(new BorderLayout(0, 0));
+        panels.get(1).setLayout(new BorderLayout());
 
         //panels 2
         panels.add(new JPanel());
@@ -301,9 +400,10 @@ public class ListedCarsPage {
         labels.add(new JLabel("ZIP CODE"));
         panels.get(5).add(labels.get(1), BorderLayout.NORTH);
 
-        //textFields 0
+        //textFields 0 zipcode
         textFields.add(new JTextField());
         panels.get(5).add(textFields.get(0), BorderLayout.CENTER);
+        textFields.get(0).setText(String.valueOf(car.getZip()));
         textFields.get(0).setColumns(10);
 
         //panels 6
@@ -312,9 +412,10 @@ public class ListedCarsPage {
         panels.get(6).setBorder(BorderFactory.createEmptyBorder());
         panels.get(6).setLayout(new BorderLayout(0, 0));
 
-        //textFields 1
+        //textFields 1 brand
         textFields.add(new JTextField());
         panels.get(6).add(textFields.get(1), BorderLayout.CENTER);
+        textFields.get(1).setText(car.getMake());
         textFields.get(1).setColumns(10);
 
         //labels 2
@@ -333,9 +434,10 @@ public class ListedCarsPage {
         panels.get(8).setBorder(BorderFactory.createEmptyBorder());
         panels.get(8).setLayout(new BorderLayout(0, 0));
 
-        //textFields 2
+        //textFields 2 year
         textFields.add(new JTextField());
         panels.get(8).add(textFields.get(2), BorderLayout.CENTER);
+        textFields.get(2).setText(car.getYear());
         textFields.get(2).setColumns(10);
 
         //labels 3
@@ -352,8 +454,9 @@ public class ListedCarsPage {
         labels.add(new JLabel("MODEL"));
         panels.get(9).add(labels.get(4), BorderLayout.NORTH);
 
-        //textFields 3
+        //textFields 3 model
         textFields.add(new JTextField());
+        textFields.get(3).setText(car.getModel());
         panels.get(9).add(textFields.get(3), BorderLayout.CENTER);
         textFields.get(3).setColumns(10);
 
@@ -362,11 +465,26 @@ public class ListedCarsPage {
         panels.get(0).add(panels.get(10), BorderLayout.CENTER);
         panels.get(10).setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panels.get(10).setBorder(BorderFactory.createEmptyBorder());
-
+/*
         button = new JButton("EDIT");
-        panels.get(10).add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Connection().updateCar(textFields.get(3).getText(),textFields.get(2).getText(),textFields.get(1).getText(),
+                        mediator.getUser().getID(), Integer.getInteger(textFields.get(0).getText()),car.getID());
+            }
+        }); */
+        /*
+        button = new JButton("DELETE");
+        button.addActionListener(new ActionListener() {
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                        new Connection().deleteCar(car);
+            }
+        });
+        panels.get(10).add(button);*/
 
-        return panels.get(0);
+        contPanel.add(panels.get(0));
     }
 
     /*
