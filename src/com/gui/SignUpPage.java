@@ -65,7 +65,7 @@ public class SignUpPage {
 	 */
 	private void initializeFrame(final Mediator mediator) { 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 998, 594);
+		frame.setBounds(100, 100, 1010, 594);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -161,7 +161,7 @@ public class SignUpPage {
 		HandMeTheKeysPanel.setBorder(BorderFactory.createEmptyBorder());
 		
 		JLabel SoftwareTitlelabel = new JLabel("HAND ME THE KEYS");
-		SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 20));
+		SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 18));
 		HandMeTheKeysPanel.add(SoftwareTitlelabel);
 		
 		JPanel LoginPanel = new JPanel();

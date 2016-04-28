@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebc72acb-73c6-43ad-86ad-fcdc6ccec251" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/database/Connection.java" afterPath="$PROJECT_DIR$/src/com/database/Connection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/engine/mediator/Mediator.java" afterPath="$PROJECT_DIR$/src/com/engine/mediator/Mediator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/engine/mediator/data/Car.java" afterPath="$PROJECT_DIR$/src/com/engine/mediator/data/Car.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/CarAddSuccessfullPage.java" afterPath="$PROJECT_DIR$/src/com/gui/CarAddSuccessfullPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/CarListedtSuccessfullPage.java" afterPath="$PROJECT_DIR$/src/com/gui/CarListedtSuccessfullPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/CarRecommendationResultsPage.java" afterPath="$PROJECT_DIR$/src/com/gui/CarRecommendationResultsPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/CarResultsPage.java" afterPath="$PROJECT_DIR$/src/com/gui/CarResultsPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/ListedCarsPage.java" afterPath="$PROJECT_DIR$/src/com/gui/ListedCarsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/LoggedOutSuccessfullPage.java" afterPath="$PROJECT_DIR$/src/com/gui/LoggedOutSuccessfullPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/RentedCarSuccessfullyPage.java" afterPath="$PROJECT_DIR$/src/com/gui/RentedCarSuccessfullyPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/RentedCarsPage.java" afterPath="$PROJECT_DIR$/src/com/gui/RentedCarsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/SignInPage.java" afterPath="$PROJECT_DIR$/src/com/gui/SignInPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/SignUpPage.java" afterPath="$PROJECT_DIR$/src/com/gui/SignUpPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gui/UserViewPage.java" afterPath="$PROJECT_DIR$/src/com/gui/UserViewPage.java" />
     </list>
     <ignored path="handmethekeys.iws" />
@@ -33,52 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SIGNIN.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gui/SIGNIN.java">
+      <file leaf-file-name="CarResultsPage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/gui/CarResultsPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="97" column="17" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignInPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gui/SignInPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="181" column="44" selection-start-line="181" selection-start-column="44" selection-end-line="181" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1345#1346#0" expanded="false" />
-                <element signature="e#1377#1378#0" expanded="false" />
-                <element signature="e#6754#6755#0" expanded="false" />
-                <element signature="e#6785#6786#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/engine/Engine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#83#84#0" expanded="false" />
-                <element signature="e#103#104#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserViewPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gui/UserViewPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9722223">
-              <caret line="55" column="53" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.86121">
+              <caret line="270" column="38" selection-start-line="270" selection-start-column="38" selection-end-line="270" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -87,59 +49,19 @@
       <file leaf-file-name="Connection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/database/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.861111">
-              <caret line="206" column="20" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="20" />
+            <state vertical-scroll-proportion="-5.4722223">
+              <caret line="78" column="40" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
               <folding>
-                <marker date="1461867997117" expanded="true" signature="1347:1440" placeholder="SELECT ID FR... tbl_user" />
-                <marker date="1461867997117" expanded="true" signature="4881:4983" placeholder="DELETE FROM " />
-                <marker date="1461867997117" expanded="true" signature="5706:5759" placeholder="UPDATE tbl_c... " />
-                <marker date="1461867997117" expanded="true" signature="5706:5980" placeholder="UPDATE tbl_c... " />
-                <marker date="1461867997117" expanded="true" signature="5706:5993" placeholder="UPDATE tbl_c... " />
-                <marker date="1461867997117" expanded="true" signature="6651:6921" placeholder="INSERT INTO tbl_car... " />
-                <marker date="1461867997117" expanded="true" signature="6651:6922" placeholder="INSERT INTO tbl_car... " />
-                <marker date="1461867997117" expanded="true" signature="7623:7845" placeholder="INSERT INTO tbl_availability... " />
-                <marker date="1461867997117" expanded="true" signature="9242:9328" placeholder="INSERT INTO tbl_user... " />
+                <marker date="1461870819925" expanded="true" signature="1347:1440" placeholder="SELECT ID FR... tbl_user" />
+                <marker date="1461870819925" expanded="true" signature="4890:4992" placeholder="DELETE FROM " />
+                <marker date="1461870819925" expanded="true" signature="5715:5768" placeholder="UPDATE tbl_c... " />
+                <marker date="1461870819925" expanded="true" signature="5715:5989" placeholder="UPDATE tbl_c... " />
+                <marker date="1461870819925" expanded="true" signature="5715:6002" placeholder="UPDATE tbl_c... " />
+                <marker date="1461870819925" expanded="true" signature="6660:6930" placeholder="INSERT INTO tbl_car... " />
+                <marker date="1461870819925" expanded="true" signature="6660:6931" placeholder="INSERT INTO tbl_car... " />
+                <marker date="1461870819925" expanded="true" signature="7632:7854" placeholder="INSERT INTO tbl_availability... " />
+                <marker date="1461870819925" expanded="true" signature="9251:9337" placeholder="INSERT INTO tbl_user... " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Car.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/engine/mediator/data/Car.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="84" selection-start-line="70" selection-start-column="84" selection-end-line="70" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CarResultsPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gui/CarResultsPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="285" column="57" selection-start-line="285" selection-start-column="57" selection-end-line="285" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RentedCarSuccessfullyPage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/gui/RentedCarSuccessfullyPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1352314">
-              <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListedCarsPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gui/ListedCarsPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="158" column="10" selection-start-line="158" selection-start-column="10" selection-end-line="158" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -157,17 +79,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/gui/SignUpPage.java" />
         <option value="$PROJECT_DIR$/src/com/gui/SIGNIN.java" />
-        <option value="$PROJECT_DIR$/src/com/gui/SignInPage.java" />
         <option value="$PROJECT_DIR$/src/com/engine/mediator/data/Car.java" />
-        <option value="$PROJECT_DIR$/src/com/database/Connection.java" />
-        <option value="$PROJECT_DIR$/src/com/gui/RentedCarsPage.java" />
-        <option value="$PROJECT_DIR$/src/com/gui/ListedCarsPage.java" />
         <option value="$PROJECT_DIR$/src/com/engine/mediator/Mediator.java" />
-        <option value="$PROJECT_DIR$/src/com/gui/UserViewPage.java" />
-        <option value="$PROJECT_DIR$/src/com/gui/CarResultsPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/SignInPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/CarAddSuccessfullPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/CarListedtSuccessfullPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/CarRecommendationResultsPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/ListedCarsPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/LoggedOutSuccessfullPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/RentedCarsPage.java" />
         <option value="$PROJECT_DIR$/src/com/gui/RentedCarSuccessfullyPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/SignUpPage.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/UserViewPage.java" />
+        <option value="$PROJECT_DIR$/src/com/database/Connection.java" />
+        <option value="$PROJECT_DIR$/src/com/gui/CarResultsPage.java" />
       </list>
     </option>
   </component>
@@ -791,12 +717,12 @@
       <option name="number" value="Default" />
       <updated>1461788418048</updated>
       <workItem from="1461788423880" duration="9519000" />
-      <workItem from="1461857682100" duration="8876000" />
+      <workItem from="1461857682100" duration="10588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18395000" />
+    <option name="totallyTimeSpent" value="20107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -888,13 +814,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="181" column="44" selection-start-line="181" selection-start-column="44" selection-end-line="181" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1345#1346#0" expanded="false" />
-            <element signature="e#1377#1378#0" expanded="false" />
-            <element signature="e#6754#6755#0" expanded="false" />
-            <element signature="e#6785#6786#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -930,15 +850,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="160" column="32" selection-start-line="160" selection-start-column="32" selection-end-line="160" selection-end-column="32" />
           <folding>
-            <marker date="1461867997117" expanded="true" signature="1347:1440" placeholder="SELECT ID FR... tbl_user" />
-            <marker date="1461867997117" expanded="true" signature="4881:4983" placeholder="DELETE FROM " />
-            <marker date="1461867997117" expanded="true" signature="5706:5759" placeholder="UPDATE tbl_c... " />
-            <marker date="1461867997117" expanded="true" signature="5706:5980" placeholder="UPDATE tbl_c... " />
-            <marker date="1461867997117" expanded="true" signature="5706:5993" placeholder="UPDATE tbl_c... " />
-            <marker date="1461867997117" expanded="true" signature="6651:6921" placeholder="INSERT INTO tbl_car... " />
-            <marker date="1461867997117" expanded="true" signature="6651:6922" placeholder="INSERT INTO tbl_car... " />
-            <marker date="1461867997117" expanded="true" signature="7623:7845" placeholder="INSERT INTO tbl_availability... " />
-            <marker date="1461867997117" expanded="true" signature="9242:9328" placeholder="INSERT INTO tbl_user... " />
+            <marker date="1461870819925" expanded="true" signature="1347:1440" placeholder="SELECT ID FR... tbl_user" />
+            <marker date="1461870819925" expanded="true" signature="4890:4992" placeholder="DELETE FROM " />
+            <marker date="1461870819925" expanded="true" signature="5715:5768" placeholder="UPDATE tbl_c... " />
+            <marker date="1461870819925" expanded="true" signature="5715:5989" placeholder="UPDATE tbl_c... " />
+            <marker date="1461870819925" expanded="true" signature="5715:6002" placeholder="UPDATE tbl_c... " />
+            <marker date="1461870819925" expanded="true" signature="6660:6930" placeholder="INSERT INTO tbl_car... " />
+            <marker date="1461870819925" expanded="true" signature="6660:6931" placeholder="INSERT INTO tbl_car... " />
+            <marker date="1461870819925" expanded="true" signature="7632:7854" placeholder="INSERT INTO tbl_availability... " />
+            <marker date="1461870819925" expanded="true" signature="9251:9337" placeholder="INSERT INTO tbl_user... " />
           </folding>
         </state>
       </provider>
@@ -951,36 +871,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gui/SignUpPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="206" column="57" selection-start-line="206" selection-start-column="57" selection-end-line="206" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gui/SIGNIN.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="17" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gui/SignInPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="181" column="44" selection-start-line="181" selection-start-column="44" selection-end-line="181" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1345#1346#0" expanded="false" />
-            <element signature="e#1377#1378#0" expanded="false" />
-            <element signature="e#6754#6755#0" expanded="false" />
-            <element signature="e#6785#6786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1004,14 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gui/RentedCarsPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="295" column="67" selection-start-line="295" selection-start-column="67" selection-end-line="295" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/engine/mediator/Mediator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1029,52 +917,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/CarAddSuccessfullPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="62" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/SignInPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="145" column="66" selection-start-line="145" selection-start-column="66" selection-end-line="145" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/CarListedtSuccessfullPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="62" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/CarRecommendationResultsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="66" selection-start-line="75" selection-start-column="66" selection-end-line="75" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gui/ListedCarsPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="158" column="10" selection-start-line="158" selection-start-column="10" selection-end-line="158" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.86121">
+          <caret line="72" column="66" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/database/Connection.java">
+    <entry file="file://$PROJECT_DIR$/src/com/gui/LoggedOutSuccessfullPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.861111">
-          <caret line="206" column="20" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="20" />
-          <folding>
-            <marker date="1461867997117" expanded="true" signature="1347:1440" placeholder="SELECT ID FR... tbl_user" />
-            <marker date="1461867997117" expanded="true" signature="4881:4983" placeholder="DELETE FROM " />
-            <marker date="1461867997117" expanded="true" signature="5706:5759" placeholder="UPDATE tbl_c... " />
-            <marker date="1461867997117" expanded="true" signature="5706:5980" placeholder="UPDATE tbl_c... " />
-            <marker date="1461867997117" expanded="true" signature="5706:5993" placeholder="UPDATE tbl_c... " />
-            <marker date="1461867997117" expanded="true" signature="6651:6921" placeholder="INSERT INTO tbl_car... " />
-            <marker date="1461867997117" expanded="true" signature="6651:6922" placeholder="INSERT INTO tbl_car... " />
-            <marker date="1461867997117" expanded="true" signature="7623:7845" placeholder="INSERT INTO tbl_availability... " />
-            <marker date="1461867997117" expanded="true" signature="9242:9328" placeholder="INSERT INTO tbl_user... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gui/UserViewPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9722223">
-          <caret line="55" column="53" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gui/CarResultsPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="285" column="57" selection-start-line="285" selection-start-column="57" selection-end-line="285" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.66548043">
+          <caret line="108" column="66" selection-start-line="108" selection-start-column="66" selection-end-line="108" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gui/RentedCarSuccessfullyPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1352314">
-          <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.7046263">
+          <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/SignUpPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="163" column="66" selection-start-line="163" selection-start-column="66" selection-end-line="163" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/UserViewPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="66" selection-start-line="94" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/RentedCarsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="289" column="66" selection-start-line="289" selection-start-column="8" selection-end-line="289" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/database/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.4722223">
+          <caret line="78" column="40" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
+          <folding>
+            <marker date="1461870819925" expanded="true" signature="1347:1440" placeholder="SELECT ID FR... tbl_user" />
+            <marker date="1461870819925" expanded="true" signature="4890:4992" placeholder="DELETE FROM " />
+            <marker date="1461870819925" expanded="true" signature="5715:5768" placeholder="UPDATE tbl_c... " />
+            <marker date="1461870819925" expanded="true" signature="5715:5989" placeholder="UPDATE tbl_c... " />
+            <marker date="1461870819925" expanded="true" signature="5715:6002" placeholder="UPDATE tbl_c... " />
+            <marker date="1461870819925" expanded="true" signature="6660:6930" placeholder="INSERT INTO tbl_car... " />
+            <marker date="1461870819925" expanded="true" signature="6660:6931" placeholder="INSERT INTO tbl_car... " />
+            <marker date="1461870819925" expanded="true" signature="7632:7854" placeholder="INSERT INTO tbl_availability... " />
+            <marker date="1461870819925" expanded="true" signature="9251:9337" placeholder="INSERT INTO tbl_user... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gui/CarResultsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86121">
+          <caret line="270" column="38" selection-start-line="270" selection-start-column="38" selection-end-line="270" selection-end-column="38" />
           <folding />
         </state>
       </provider>

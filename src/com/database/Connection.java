@@ -76,7 +76,7 @@ public class Connection {
      * @return
      */
     public ArrayList<Car> search(String zipCode, String startDate, String endDate) {
-        String SELECT = "SELECT tbl_car.ID, tbl_car.Brand, tbl_car.Model, tbl_car.Year, tbl_car.zipcode, tbl_car.user_ID "
+        String SELECT = "SELECT DISTINCT tbl_car.ID, tbl_car.Brand, tbl_car.Model, tbl_car.Year, tbl_car.zipcode, tbl_car.user_ID "
                 + "FROM tbl_car, tbl_availability "
                 + "WHERE tbl_car.zipcode LIKE '" + zipCode.substring(0, 3) + "%' AND "
                 + "tbl_car.ID = tbl_availability.car_ID AND ("

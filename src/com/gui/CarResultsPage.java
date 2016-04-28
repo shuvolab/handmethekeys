@@ -59,7 +59,7 @@ public class CarResultsPage {
         this.mediator=mediator;
 
         frame = new JFrame();
-        frame.setBounds(100, 100, 998, 594);
+        frame.setBounds(100, 100, 1010, 594);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -74,7 +74,7 @@ public class CarResultsPage {
         HandMeTheKeysPanel.setBorder(BorderFactory.createEmptyBorder());
 
         JLabel SoftwareTitlelabel = new JLabel("HAND ME THE KEYS");
-        SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 20));
+        SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 18));
         HandMeTheKeysPanel.add(SoftwareTitlelabel);
 
         JPanel UserAndLogOutPanel = new JPanel();
@@ -256,28 +256,22 @@ public class CarResultsPage {
         panels.add(new JPanel());
         panels.get(0).setBounds(101, 225 + num * 100, 403, 84);
         frame.getContentPane().add(panels.get(0));
-        panels.get(0).setLayout(new BorderLayout(0, 0));
-
-
-
-        //panels 1
-        panels.add(new JPanel());
-        panels.get(1).setBorder(BorderFactory.createEmptyBorder());
-        panels.get(1).setBounds(336, 383, 224, 71);
-        panels.get(0).add(panels.get(1), BorderLayout.EAST);
-        panels.get(1).setLayout(new BorderLayout(0, 0));
-
-        //panels 2
-        panels.add(new JPanel());
-        panels.get(2).setBorder(BorderFactory.createEmptyBorder());
-        panels.get(1).add(panels.get(2), BorderLayout.CENTER);
+        panels.get(0).setLayout(new GridLayout(2,3));
 
         //labels 0
-        labels.add(new JLabel());
-        labels.get(0).setText("");
+        labels.add(new JLabel("BRAND: "+car.getMake()));
+        panels.get(0).add(labels.get(0), BorderLayout.NORTH);
+
+        //labels 1
+        labels.add(new JLabel("MODEL: "+car.getModel()));
+        panels.get(0).add(labels.get(1), BorderLayout.NORTH);
+
+        //panel 1
+        panels.add(new JPanel());
+        panels.get(0).add(panels.get(1));
 
         //button
-        panels.get(2).add(button);
+        panels.get(1).add(button);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -287,71 +281,13 @@ public class CarResultsPage {
             }
         });
 
-        //panels 3
-        panels.add(new JPanel());
-        panels.get(0).add(panels.get(3), BorderLayout.WEST);
-        panels.get(3).setLayout(new BorderLayout(0, 0));
-        panels.get(3).setBorder(BorderFactory.createEmptyBorder());
-
-        //panels 4
-        panels.add(new JPanel());
-        panels.get(3).add(panels.get(4), BorderLayout.SOUTH);
-        panels.get(4).setLayout(new BorderLayout(0, 0));
-        panels.get(4).setBorder(BorderFactory.createEmptyBorder());
-
-        //panels 5
-        panels.add(new JPanel());
-        panels.get(4).add(panels.get(5), BorderLayout.EAST);
-        panels.get(5).setLayout(new BorderLayout(0, 0));
-        panels.get(5).setBorder(BorderFactory.createEmptyBorder());
-
-        //labels 1
-        labels.add(new JLabel("ZIP CODE: "+car.getZip()));
-        panels.get(5).add(labels.get(1), BorderLayout.NORTH);
-
-
-
-        //panels 6
-        panels.add(new JPanel());
-        panels.get(4).add(panels.get(6), BorderLayout.WEST);
-        panels.get(6).setBorder(BorderFactory.createEmptyBorder());
-        panels.get(6).setLayout(new BorderLayout(0, 0));
-
-
-
         //labels 2
-        labels.add(new JLabel("BRAND: "+car.getMake()));
-        panels.get(6).add(labels.get(2), BorderLayout.NORTH);
-
-        //panels 7
-        panels.add(new JPanel());
-        panels.get(3).add(panels.get(7), BorderLayout.NORTH);
-        panels.get(7).setLayout(new BorderLayout(0, 0));
-        panels.get(7).setBorder(BorderFactory.createEmptyBorder());
-
-        //panels 8
-        panels.add(new JPanel());
-        panels.get(7).add(panels.get(8), BorderLayout.WEST);
-        panels.get(8).setBorder(BorderFactory.createEmptyBorder());
-        panels.get(8).setLayout(new BorderLayout(0, 0));
-
-
+        labels.add(new JLabel("CAR YEAR: "+car.getYear()));
+        panels.get(0).add(labels.get(2), BorderLayout.NORTH);
 
         //labels 3
-        labels.add(new JLabel("CAR YEAR: "+car.getYear()));
-        panels.get(8).add(labels.get(3), BorderLayout.NORTH);
-
-        //panels 9
-        panels.add(new JPanel());
-        panels.get(7).add(panels.get(9), BorderLayout.EAST);
-        panels.get(9).setBorder(BorderFactory.createEmptyBorder());
-        panels.get(9).setLayout(new BorderLayout(0, 0));
-
-        //labels 4
-        labels.add(new JLabel("MODEL: "+car.getModel()));
-        panels.get(9).add(labels.get(4), BorderLayout.NORTH);
-
-
+        labels.add(new JLabel("ZIP CODE: "+car.getZip()));
+        panels.get(0).add(labels.get(3), BorderLayout.NORTH);
 
         return panels.get(0);
     }/*

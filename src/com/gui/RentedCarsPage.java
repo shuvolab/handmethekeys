@@ -57,7 +57,7 @@ public class RentedCarsPage {
      */
     private void initialize(final Mediator mediator) {
         frame = new JFrame();
-        frame.setBounds(100, 100, 998, 594);
+        frame.setBounds(100, 100, 1010, 594);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -71,7 +71,7 @@ public class RentedCarsPage {
         HMTKLoginPanel.add(HandMeTheKeysPanel, BorderLayout.WEST);
         HandMeTheKeysPanel.setBorder(BorderFactory.createEmptyBorder());
         JLabel SoftwareTitlelabel = new JLabel("HAND ME THE KEYS");
-        SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 20));
+        SoftwareTitlelabel.setFont(new Font("Skia", Font.PLAIN, 18));
         HandMeTheKeysPanel.add(SoftwareTitlelabel);
 
         JPanel UserAndLogOutPanel = new JPanel();
